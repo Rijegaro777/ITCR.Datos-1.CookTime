@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CookTime.Inicio">
+    <ContentPage.Content>
+        <Grid BackgroundColor="HotPink" VerticalOptions="CenterAndExpand" >
+            <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="30, 20">
+                    <Entry Placeholder="Correo electrónico" PlaceholderColor="White"/>
+                    <Entry Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Text="Iniciar Sesión" BackgroundColor="AliceBlue" BorderColor="Black" TextColor="LightBlue"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="¿No tienes cuenta?" FontSize="Micro"/>
+                        <Label Text="Registrarse" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
