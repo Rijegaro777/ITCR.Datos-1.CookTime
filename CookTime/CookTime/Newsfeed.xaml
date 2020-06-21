@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CookTime.Newsfeed">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="AUTO"/>
+
+        </Grid.RowDefinitions>
+        <!--Header Background-->
+        <BoxView BackgroundColor="#FFFFFF" Grid.Row="0"/>
+
+        <!--Profile Name
+        <BoxView BackgroundColor="Red" Grid.Row="1"/>
+
+        Social Stats
+        <BoxView BackgroundColor="Orange" Grid.Row="2"/>    -->
+     
+        
+        <!--Profile Description-->
+        <BoxView BackgroundColor="#EBEBEB" Grid.Row="3"/>
+
+        <!--Newsfeed-->
+        <BoxView BackgroundColor="#C7C7C7" Grid.Row="4"/>
+
+        <!--<BoxView BackgroundColor="Black" HorizontalOptions="Center" 
+                     WidthRequest="100" HeightRequest="100" VerticalOptions="End" 
+                 TranslationY="100"/>-->
+
+    </Grid>
+
+    <Button Text="Add new recipe" ImageSource="C:\Users\fofov\Desktop\CookTime\Icon_awesome-search.jpg" />
+</ContentPage>
