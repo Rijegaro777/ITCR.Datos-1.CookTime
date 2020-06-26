@@ -32,11 +32,11 @@
         VerticalOptions="End"
         HorizontalOptions="Center">
        <Image Source=""/>
-        <Button x:Name="Newsfeed" BackgroundColor="#565656" WidthRequest="50"/>
-        <Button x:Name="Search" BackgroundColor="#565656" WidthRequest="50"/>
-        <Button x:Name="Add" BackgroundColor="#565656" WidthRequest="50"/>
-        <Button x:Name="Notifications" BackgroundColor="#565656" WidthRequest="50"/>
-        <Button x:Name="My Profile" BackgroundColor="#565656" WidthRequest="50"/>
+       <Button x:Name="Newsfeed" />
+       <Button x:Name="Search"/>
+       <Button x:Name="Add"/>
+       <Button x:Name="Notifications"/>
+       <Button x:Name="My Profile"/>
 
     </StackLayout>
 
