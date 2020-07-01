@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookTime.Android", "CookTim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookTime.iOS", "CookTime\CookTime.iOS\CookTime.iOS.csproj", "{70ADD64F-2C95-4374-B53A-79A95FF51DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookTime", "CookTime\CookTime\CookTime.csproj", "{C16553C6-67DC-48DF-B134-1EE45ABB3310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookTime", "CookTime\CookTime\CookTime.csproj", "{C16553C6-67DC-48DF-B134-1EE45ABB3310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
