@@ -1,4 +1,13 @@
-﻿using System;
+using Syncfusion.SfRating.XForms.iOS;
+using Syncfusion.XForms.iOS.Core;
+using Syncfusion.XForms.iOS.BadgeView;
+using Syncfusion.XForms.iOS.TabView;
+using Syncfusion.SfCalendar.XForms.iOS;
+using Syncfusion.XForms.iOS.ComboBox;
+using  Syncfusion.XForms.iOS.Graphics;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.XForms.iOS.Buttons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,6 +32,15 @@ namespace CookTime.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfRatingRenderer.Init();
+            SfAvatarViewRenderer.Init();
+            SfBadgeViewRenderer.Init();
+            SfTabViewRenderer.Init();
+            SfComboBoxRenderer.Init();
+            SfCalendarRenderer.Init();
+            SfGradientViewRenderer.Init();
+            SfBorderRenderer.Init();
+            SfButtonRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
