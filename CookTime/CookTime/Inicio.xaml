@@ -15,12 +15,18 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="1" Padding="30, 20">
-                    <Entry Placeholder="Correo electrónico" PlaceholderColor="White"/>
-                    <Entry Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Text="Iniciar Sesión" BackgroundColor="AliceBlue" BorderColor="Black" TextColor="LightBlue"/>
+                    <Entry x:Name="entry_email" Placeholder="Correo electrónico" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_contrasena" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Text="Iniciar Sesión" BackgroundColor="AliceBlue" BorderColor="Black" TextColor="LightBlue" Clicked="login"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="¿No tienes cuenta?" FontSize="Micro"/>
-                        <Label Text="Registrarse" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                        
+                        <Label x:Name="registrarse" Text="Registrarse" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ventana_registro"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        
                     </StackLayout>
                 </StackLayout>
             </Grid>

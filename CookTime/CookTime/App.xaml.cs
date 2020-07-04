@@ -10,7 +10,7 @@ namespace CookTime
         {
             InitializeComponent();
 
-            MainPage = new Inicio();
+            MainPage = new NavigationPage(new Inicio());
         }
 
         protected override void OnStart()
