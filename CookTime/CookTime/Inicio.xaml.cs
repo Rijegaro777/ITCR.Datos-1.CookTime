@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,12 +35,12 @@ namespace CookTime
             string response = await Cliente.get_instance().get_client()
                 .GetStringAsync("rest/servicios/login?email=" + email + "&contrasena=" + contrasena_encriptada);
 
-            bool final_response = bool.Parse(response.ToString());
+            string final_response = response.ToString();
 
-            if (final_response)
+            if (final_response != "")
             {
-                await Navigation.PushModalAsync(new Busqueda());
-
+                Cliente.get_instance().set_usuario(JsonConvert.DeserializeObject<Usuario>(final_response));
+                Application.Current.MainPage = new PaginaPrincipal();
             }
             else
             {
@@ -52,7 +54,7 @@ namespace CookTime
         /// </summary>
         private async void ventana_registro(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new Registro()));
+            await Navigation.PushAsync(new Registro());
         }
     }
 }

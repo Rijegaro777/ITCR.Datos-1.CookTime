@@ -5,11 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
-             x:Class="CookTime.Busqueda">
+             x:Class="CookTime.CrearReceta">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="search_bar_personas" SearchButtonPressed="buscar_personas"/>
-            <ListView x:Name="list_personas"/>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

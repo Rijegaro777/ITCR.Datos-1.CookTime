@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CookTime.Perfil">
+    <ContentPage.Content>
+        <ContentView>
+            <ScrollView>
+                <StackLayout Padding="10,10,10,0" HorizontalOptions="Fill" Spacing="15">
+                    <ContentView HeightRequest="200" WidthRequest="200" HorizontalOptions="Center">
+                        <Image 
+                            Aspect="AspectFit"
+                            Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
+                    </ContentView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="nombre" 
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               FontSize="Large"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Button x:Name="boton_seguidos" 
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Seguidos" 
+                                HorizontalOptions="FillAndExpand" 
+                                Clicked="mostrar_seguidos"/>
+                        <Button x:Name="boton_seguidores" 
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Seguidores" 
+                                HorizontalOptions="FillAndExpand"
+                                Clicked="mostrar_seguidores"/>
+                    </Grid>
+                    <StackLayout Spacing="100">
+                        <Label Text="My Menu 1" FontSize="Large"/>
+                        <Label Text="My Menu 2" FontSize="Large"/>
+                        <Label Text="My Menu 3" FontSize="Large"/>
+                        <Label Text="My Menu 4" FontSize="Large"/>
+                        <Label Text="My Menu 5" FontSize="Large"/>
+                        <Label Text="My Menu 6" FontSize="Large"/>
+                        <Label Text="My Menu 7" FontSize="Large"/>
+                        <Label Text="My Menu 8" FontSize="Large"/>
+                        <Label Text="My Menu 9" FontSize="Large"/>
+                        <Label Text="My Menu 10" FontSize="Large"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

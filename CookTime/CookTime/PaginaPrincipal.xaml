@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:CookTime"
+             mc:Ignorable="d"
+             x:Class="CookTime.PaginaPrincipal">
+
+    <NavigationPage Title="Perfil">
+        <x:Arguments>
+            <local:Perfil/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Neswsfeed">
+        <x:Arguments>
+            <local:Newsfeed/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Buscar">
+        <x:Arguments>
+            <local:Busqueda/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Notificaciones">
+        <x:Arguments>
+            <local:CrearReceta/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="+">
+        <x:Arguments>
+            <local:CrearReceta/>
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

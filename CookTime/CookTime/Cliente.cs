@@ -10,13 +10,14 @@ namespace CookTime
         private static Cliente instance = null;
         private string uri;
         private HttpClient client;
+        private Usuario usuario;
 
         /// <summary>
         /// Clase singleton de un cliente que se comunica con el servidor.
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.1.4:8080/";
+            this.uri = "http://192.168.1.7:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -47,6 +48,27 @@ namespace CookTime
         public HttpClient get_client()
         {
             return client;
+        }
+
+
+        /// <summary>
+        /// Retorna el usuario que está usando la aplicación.
+        /// </summary>
+        /// <returns>
+        /// Un usuario.
+        /// </returns>
+        public Usuario get_usuario()
+        {
+            return usuario;
+        }
+
+        /// <summary>
+        /// Asigna el usuario recibido como el usuario que usa la aplicación.
+        /// </summary>
+        /// <param name="usuario">El usuario que será asignado</param>
+        public void set_usuario(Usuario usuario)
+        {
+            this.usuario = usuario;
         }
 
         /// <summary>
