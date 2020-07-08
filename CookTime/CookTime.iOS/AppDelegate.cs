@@ -1,3 +1,5 @@
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfPullToRefresh.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.XForms.iOS.Core;
 using Syncfusion.XForms.iOS.BadgeView;
@@ -31,7 +33,9 @@ namespace CookTime.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+global::Xamarin.Forms.Forms.Init();
+            SfListViewRenderer.Init();
+SfPullToRefreshRenderer.Init();
             SfRatingRenderer.Init();
             SfAvatarViewRenderer.Init();
             SfBadgeViewRenderer.Init();

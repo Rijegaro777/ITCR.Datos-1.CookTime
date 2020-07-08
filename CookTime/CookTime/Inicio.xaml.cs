@@ -56,5 +56,13 @@ namespace CookTime
         {
             await Navigation.PushAsync(new Registro());
         }
+        private async void ventana_profile(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.Profile.MasterPage());
+        }
+        private async void ventana_notification(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.Notification.SocialNotificationPage());
+        }
     }
 }

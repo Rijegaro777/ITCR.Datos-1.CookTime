@@ -24,6 +24,20 @@
                         <Label x:Name="registrarse" Text="Registrarse" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="ventana_registro"/>
+                                
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label x:Name="perfil" Text="Perfil" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ventana_profile"/>
+
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="Notifications" Text="Notificaciones" FontSize="Micro" HorizontalOptions="EndAndExpand" FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ventana_notification"/>
+
                             </Label.GestureRecognizers>
                         </Label>
                         

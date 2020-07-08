@@ -11,16 +11,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\notification.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\notification.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.1.0.59" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.59" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.2.0.44" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
 
@@ -113,6 +124,21 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Forms\TabbedForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notification\SocialNotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notification\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ContactProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\MasterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\SocialIconTemplate.xaml">
