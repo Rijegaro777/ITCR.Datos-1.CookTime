@@ -6,35 +6,5 @@
              xmlns:local="clr-namespace:CookTime"
              mc:Ignorable="d"
              x:Class="CookTime.PaginaPrincipal">
-
-    <NavigationPage Title="Perfil">
-        <x:Arguments>
-            <local:Perfil/>
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Neswsfeed">
-        <x:Arguments>
-            <local:Newsfeed/>
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Buscar">
-        <x:Arguments>
-            <local:Busqueda/>
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Notificaciones">
-        <x:Arguments>
-            <local:CrearReceta/>
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="+">
-        <x:Arguments>
-            <local:CrearReceta/>
-        </x:Arguments>
-    </NavigationPage>
-
+ 
 </TabbedPage>

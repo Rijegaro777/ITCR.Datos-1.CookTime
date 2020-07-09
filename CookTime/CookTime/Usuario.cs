@@ -4,12 +4,11 @@ using System.Text;
 
 namespace CookTime
 {
-    class Usuario
+    public class Usuario
     {
         public string email, nombre, apellido, contrasena, foto;
         public int edad, id;
-        public string[] seguidos;
-        public string[] seguidores;
+        public List<int> seguidos, seguidores;
         public Boolean is_chef;
 
         /// <summary>
@@ -39,8 +38,8 @@ namespace CookTime
             this.foto = "vacio.jpg";
             this.edad = edad;
             this.id = -1;
-            this.seguidos = new String[] { };
-            this.seguidores = new String[] { };
+            this.seguidos = new List<int>();
+            this.seguidores = new List<int>();
             this.is_chef = false;
         }
 
@@ -79,12 +78,12 @@ namespace CookTime
             return id;
         }
 
-        public String[] get_seguidos()
+        public List<int> get_seguidos()
         {
             return seguidos;
         }
 
-        public String[] get_seguidores()
+        public List<int> get_seguidores()
         {
             return seguidores;
         }

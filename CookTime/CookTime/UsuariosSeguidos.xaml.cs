@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,33 +14,31 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UsuariosSeguidos : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
-
-        public UsuariosSeguidos()
+        public UsuariosSeguidos(Usuario usuario)
         {
             InitializeComponent();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
+            //List<string> nombres_seguidos = buscar_seguidos(usuario).Result;
+            lista_seguidos.ItemsSource = usuario.get_seguidos();
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async Task<List<string>> buscar_seguidos(Usuario usuario)
         {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            if (usuario.get_seguidos().Count != 0)
+            {
+                List<string> nombres_seguidos = new List<string>();
+                for (int i = 0; i < usuario.get_seguidos().Count; i++)
+                {
+                    var response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_usuario_por_id?id=" + usuario.get_seguidos()[i].ToString());
+                    string final_response = response.ToString();
+                    Usuario seguido = JsonConvert.DeserializeObject<Usuario>(final_response);
+                    nombres_seguidos.Add(seguido.get_nombre() + " " + seguido.get_apellido());
+                }
+                return nombres_seguidos;
+            }
+            else
+            {
+                return new List<string>();
+            }
         }
     }
 }

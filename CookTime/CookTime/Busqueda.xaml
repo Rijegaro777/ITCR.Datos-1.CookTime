@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <SearchBar x:Name="search_bar_personas" SearchButtonPressed="buscar_personas"/>
-            <ListView x:Name="list_personas"/>
+            <ListView x:Name="list_personas" ItemTapped="list_personas_ItemTapped"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

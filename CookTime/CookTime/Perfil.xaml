@@ -15,8 +15,9 @@
                             Aspect="AspectFit"
                             Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
                     </ContentView>
-                    <Grid>
+                    <Grid x:Name="grid_perfil">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>

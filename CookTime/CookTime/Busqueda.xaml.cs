@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,6 +9,9 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Busqueda : ContentPage
     {
+        private List<Usuario> sugerencias;
+        private List<string> nombres_sugerencias;
+
         public Busqueda()
         {
             InitializeComponent();
@@ -35,8 +34,8 @@ namespace CookTime
 
             string final_response = response.ToString();
 
-            List<Usuario> sugerencias = JsonConvert.DeserializeObject<List<Usuario>>(final_response);
-            List<string> nombres_sugerencias = new List<string>();
+            sugerencias = JsonConvert.DeserializeObject<List<Usuario>>(final_response);
+            nombres_sugerencias = new List<string>();
 
             try
             {
@@ -60,6 +59,15 @@ namespace CookTime
             }
 
             list_personas.ItemsSource = nombres_sugerencias;
+        }
+
+        private async void list_personas_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (!nombres_sugerencias.Contains("No se encontraron usuarios"))
+            {
+                int pos = nombres_sugerencias.IndexOf(list_personas.SelectedItem.ToString());
+                await Navigation.PushModalAsync(new NavigationPage(new Perfil(sugerencias[pos], true)));
+            }
         }
     }
 }

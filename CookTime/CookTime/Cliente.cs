@@ -2,6 +2,8 @@
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace CookTime
 {
@@ -10,14 +12,14 @@ namespace CookTime
         private static Cliente instance = null;
         private string uri;
         private HttpClient client;
-        private Usuario usuario;
+        private Usuario usuario_actual;
 
         /// <summary>
         /// Clase singleton de un cliente que se comunica con el servidor.
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.1.7:8080/";
+            this.uri = "http://192.168.100.47:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -52,26 +54,6 @@ namespace CookTime
 
 
         /// <summary>
-        /// Retorna el usuario que está usando la aplicación.
-        /// </summary>
-        /// <returns>
-        /// Un usuario.
-        /// </returns>
-        public Usuario get_usuario()
-        {
-            return usuario;
-        }
-
-        /// <summary>
-        /// Asigna el usuario recibido como el usuario que usa la aplicación.
-        /// </summary>
-        /// <param name="usuario">El usuario que será asignado</param>
-        public void set_usuario(Usuario usuario)
-        {
-            this.usuario = usuario;
-        }
-
-        /// <summary>
         /// Encripta el string ingresado utilizando hashMD5.
         /// </summary>
         /// <param text>
@@ -103,6 +85,35 @@ namespace CookTime
         public string get_uri()
         {
             return uri;
+        }
+
+        /// <summary>
+        /// Retorna el usuario que está usando la aplicación.
+        /// </summary>
+        /// <returns>
+        /// Un usuario.
+        /// </returns>
+        public Usuario get_usuario()
+        {
+            return usuario_actual;
+        }
+
+        /// <summary>
+        /// Asigna el usuario recibido como el usuario que usa la aplicación.
+        /// </summary>
+        /// <param name="usuario">El usuario que será asignado</param>
+        public void set_usuario(Usuario usuario)
+        {
+            this.usuario_actual = usuario;
+        }
+        public async Task seguir_usuario(Usuario usuario, Grid grid, Button button)
+        {
+            grid.Children.Remove(button);
+            usuario_actual.get_seguidos().Add(usuario.get_id());
+            usuario.get_seguidores().Add(usuario_actual.get_id());
+
+            var response = await client
+                .GetStringAsync("/rest/servicios/seguir_usuario?usuario="+usuario_actual.get_id().ToString()+"&usuario_seguido="+usuario.get_id().ToString());
         }
     }
 }
