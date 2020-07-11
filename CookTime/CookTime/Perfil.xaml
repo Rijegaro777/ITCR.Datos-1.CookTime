@@ -8,56 +8,86 @@
              x:Class="CookTime.Perfil">
     <ContentPage.Content>
         <ContentView>
-            <ScrollView>
-                <StackLayout Padding="10,10,10,0" HorizontalOptions="Fill" Spacing="15">
-                    <ContentView HeightRequest="200" WidthRequest="200" HorizontalOptions="Center">
-                        <Image 
-                            Aspect="AspectFit"
-                            Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
+            <StackLayout Padding="10,10,10,0" HorizontalOptions="Fill" Spacing="15">
+                <Grid x:Name="grid_perfil">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="nombre" 
+                           Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <ContentView HeightRequest="170" WidthRequest="170" HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Image
+                                Aspect="AspectFit"
+                                Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
                     </ContentView>
-                    <Grid x:Name="grid_perfil">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="nombre" 
-                               Grid.Row="0"
-                               Grid.ColumnSpan="2"
-                               FontSize="Large"
-                               FontAttributes="Bold"
-                               HorizontalOptions="CenterAndExpand"/>
-                        <Button x:Name="boton_seguidos" 
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Text="Seguidos" 
-                                HorizontalOptions="FillAndExpand" 
-                                Clicked="mostrar_seguidos"/>
-                        <Button x:Name="boton_seguidores" 
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Text="Seguidores" 
-                                HorizontalOptions="FillAndExpand"
-                                Clicked="mostrar_seguidores"/>
-                    </Grid>
-                    <StackLayout Spacing="100">
-                        <Label Text="My Menu 1" FontSize="Large"/>
-                        <Label Text="My Menu 2" FontSize="Large"/>
-                        <Label Text="My Menu 3" FontSize="Large"/>
-                        <Label Text="My Menu 4" FontSize="Large"/>
-                        <Label Text="My Menu 5" FontSize="Large"/>
-                        <Label Text="My Menu 6" FontSize="Large"/>
-                        <Label Text="My Menu 7" FontSize="Large"/>
-                        <Label Text="My Menu 8" FontSize="Large"/>
-                        <Label Text="My Menu 9" FontSize="Large"/>
-                        <Label Text="My Menu 10" FontSize="Large"/>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
+                    <Button x:Name="boton_seguidos" 
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Seguidos" 
+                            HorizontalOptions="FillAndExpand" 
+                            Clicked="mostrar_seguidos"/>
+                    <Button x:Name="boton_seguidores" 
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="Seguidores" 
+                            HorizontalOptions="FillAndExpand"
+                            Clicked="mostrar_seguidores"/>
+                    <ScrollView Grid.Row="3" Grid.ColumnSpan="2">
+                        <StackLayout Spacing="100">
+                            <ListView ItemsSource="{Binding listRecipes}"
+                                HasUnevenRows="True"
+                                ItemSelected="ListView_ItemSelected"
+                                ItemTapped="ListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="120" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Url}"
+                                                       Aspect="AspectFill"
+                                                       HeightRequest="100"
+                                                       WidthRequest="100"
+                                                       VerticalOptions="Center" />
+                                                <Label Grid.Column="1"
+                                                       Text="{Binding Name}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Start"
+                                                       HorizontalOptions="Center" />
+                                                <Label Grid.Column="1"
+                                                       Text="{Binding Date}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center" />
+                                                <Label Grid.Column="1"
+                                                       Text="{Binding Difficulty}"
+                                                       VerticalOptions="End"
+                                                       HorizontalOptions="Center"/>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </StackLayout>
         </ContentView>
     </ContentPage.Content>
 </ContentPage>
