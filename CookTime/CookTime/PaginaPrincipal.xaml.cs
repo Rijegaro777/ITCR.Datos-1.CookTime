@@ -7,6 +7,10 @@ namespace CookTime
     public partial class PaginaPrincipal : TabbedPage
     {
         private Usuario usuario = Cliente.get_instance().get_usuario();
+
+        /// <summary>
+        /// Ventana principal donde se muestran las diferentes secciones de la aplicación.
+        /// </summary>
         public PaginaPrincipal()
         {
             NavigationPage perfil = new NavigationPage(new Perfil(usuario, false));

@@ -22,7 +22,6 @@
                     <Entry x:Name="entry_contrasena" Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True"/>
                     <Entry x:Name="entry_edad" Placeholder="Edad" PlaceholderColor="Black"/>
                     <Button x:Name="button_registro" Text="Registrarse" Clicked="button_registro_clicked"/>
-                    <Button x:Name="button_consulta" Text="Consulta" Clicked="button_consulta_clicked"/>
                 </StackLayout>
             </Grid>
         </Grid>

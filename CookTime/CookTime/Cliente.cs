@@ -19,7 +19,7 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.100.47:8080/";
+            this.uri = "http://192.168.1.9:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -106,6 +106,16 @@ namespace CookTime
         {
             this.usuario_actual = usuario;
         }
+
+        /// <summary>
+        /// Agrega al usuario recibido a la lista de seguidos del usuario que está usando la aplicación y
+        /// envía la solicitud al servidor para actualizar el archivo JSON. Elimina la opción de seguir usuarios
+        /// que ya están en la lista de seguidos.
+        /// </summary>
+        /// <param name="usuario">El usuario que será seguido</param>
+        /// <param name="grid">El grid del perfil del usuario a seguir</param>
+        /// <param name="button">El botón para seguir al usuario</param>
+        /// <returns></returns>
         public async Task seguir_usuario(Usuario usuario, Grid grid, Button button)
         {
             grid.Children.Remove(button);

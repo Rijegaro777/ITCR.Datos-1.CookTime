@@ -41,14 +41,5 @@ namespace CookTime
             await DisplayAlert("Exitoso", "Registro completado exitosamentre", "Ok");
             await Navigation.PopToRootAsync();
         }
-
-        private async void button_consulta_clicked(object sender, EventArgs e)
-        {
-            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/consulta");
-
-            string final_response = response.ToString();
-
-            await DisplayAlert("Usuarios", final_response, "Ok");
-        }
     }
 }

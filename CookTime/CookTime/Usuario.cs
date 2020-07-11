@@ -6,7 +6,8 @@ namespace CookTime
 {
     public class Usuario
     {
-        public string email, nombre, apellido, contrasena, foto;
+        private string contrasena;
+        public string email, nombre, apellido, foto;
         public int edad, id;
         public List<int> seguidos, seguidores;
         public Boolean is_chef;

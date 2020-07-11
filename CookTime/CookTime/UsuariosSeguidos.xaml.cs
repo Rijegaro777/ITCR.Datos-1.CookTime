@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,30 +15,48 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UsuariosSeguidos : ContentPage
     {
+        List<string> lista_nombres = new List<string>();
+        List<Usuario> lista_usuarios = new List<Usuario>();
         public UsuariosSeguidos(Usuario usuario)
         {
             InitializeComponent();
-            //List<string> nombres_seguidos = buscar_seguidos(usuario).Result;
-            lista_seguidos.ItemsSource = usuario.get_seguidos();
+            buscar_seguidos(usuario);
         }
 
-        private async Task<List<string>> buscar_seguidos(Usuario usuario)
+        /// <summary>
+        /// /// Solicita los datos de los seguidos al server y los muestra.
+        /// </summary>
+        /// <param name="usuario">El usuario cuyos seguidores se desean consultar</param>
+        private async void buscar_seguidos(Usuario usuario)
         {
-            if (usuario.get_seguidos().Count != 0)
+            for (int i = 0; i < usuario.get_seguidos().Count; i++)
             {
-                List<string> nombres_seguidos = new List<string>();
-                for (int i = 0; i < usuario.get_seguidos().Count; i++)
-                {
-                    var response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_usuario_por_id?id=" + usuario.get_seguidos()[i].ToString());
-                    string final_response = response.ToString();
-                    Usuario seguido = JsonConvert.DeserializeObject<Usuario>(final_response);
-                    nombres_seguidos.Add(seguido.get_nombre() + " " + seguido.get_apellido());
-                }
-                return nombres_seguidos;
+                string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_usuario/" + usuario.get_seguidos()[i].ToString());
+                string final_response = response.ToString();
+
+                Usuario usuario_seguido = JsonConvert.DeserializeObject<Usuario>(final_response);
+
+                lista_usuarios.Add(usuario_seguido);
             }
-            else
+            for (int i = 0; i < lista_usuarios.Count; i++)
             {
-                return new List<string>();
+                lista_nombres.Add(lista_usuarios[i].get_nombre() + " " + lista_usuarios[i].get_apellido());
+            }
+            lista_seguidos.ItemsSource = lista_nombres;
+        }
+
+
+        /// <summary>
+        /// /// Muestra el perfil del seguidos que fue seleccionado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void lista_seguidos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (!lista_nombres.Contains("No se encontraron usuarios"))
+            {
+                int pos = lista_nombres.IndexOf(lista_seguidos.SelectedItem.ToString());
+                await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], true)));
             }
         }
     }

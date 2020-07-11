@@ -17,6 +17,11 @@ namespace CookTime
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Busca el texto ingresado en el search bar en el archivo JSON del server cuando se presiona el botón de buscar..
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buscar_personas(object sender, EventArgs e)
         {
             string busqueda;
@@ -48,7 +53,7 @@ namespace CookTime
                     int i = 0;
                     while (i < sugerencias.Count)
                     {
-                        nombres_sugerencias.Add(sugerencias[i].nombre + " " + sugerencias[i].apellido);
+                        nombres_sugerencias.Add(sugerencias[i].get_nombre() + " " + sugerencias[i].get_apellido());
                         i++;
                     }
                 }
@@ -61,6 +66,11 @@ namespace CookTime
             list_personas.ItemsSource = nombres_sugerencias;
         }
 
+        /// <summary>
+        /// Muestra el perfil del usuario seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void list_personas_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (!nombres_sugerencias.Contains("No se encontraron usuarios"))
