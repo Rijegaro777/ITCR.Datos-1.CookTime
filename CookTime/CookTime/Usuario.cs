@@ -6,7 +6,7 @@ namespace CookTime
 {
     public class Usuario
     {
-        private string contrasena;
+        public string contrasena;
         public string email, nombre, apellido, foto;
         public int edad, id;
         public List<int> seguidos, seguidores, recetas;
@@ -88,6 +88,11 @@ namespace CookTime
         public List<int> get_seguidores()
         {
             return seguidores;
+        }
+
+        public List<int> get_recetas()
+        {
+            return recetas;
         }
     }
 }
