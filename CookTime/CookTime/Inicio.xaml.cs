@@ -40,7 +40,7 @@ namespace CookTime
             if (final_response != "")
             {
                 Cliente.get_instance().set_usuario(JsonConvert.DeserializeObject<Usuario>(final_response));
-                Application.Current.MainPage = new PaginaPrincipal();
+                Application.Current.MainPage = new ContenedorPrincipal();
             }
             else
             {

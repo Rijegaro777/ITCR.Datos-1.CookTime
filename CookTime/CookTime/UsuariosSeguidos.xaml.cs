@@ -20,6 +20,7 @@ namespace CookTime
         public UsuariosSeguidos(Usuario usuario)
         {
             InitializeComponent();
+            Usuario usuario_actual = usuario;
             buscar_seguidos(usuario);
         }
 
@@ -56,7 +57,15 @@ namespace CookTime
             if (!lista_nombres.Contains("No se encontraron usuarios"))
             {
                 int pos = lista_nombres.IndexOf(lista_seguidos.SelectedItem.ToString());
-                await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], true)));
+                
+                if(lista_usuarios[pos] != Cliente.get_instance().get_usuario())
+                {
+                    await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], true)));
+                }
+                else
+                {
+                    await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], false)));
+                }
             }
         }
     }

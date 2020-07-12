@@ -13,26 +13,18 @@ namespace CookTime
         /// </summary>
         public PaginaPrincipal()
         {
-            NavigationPage perfil = new NavigationPage(new Perfil(usuario, false));
-            perfil.Title = "Perfil";
-
             NavigationPage newsfeed = new NavigationPage(new Newsfeed());
             newsfeed.Title = "Newsfeed";
+
+            NavigationPage notificaciones = new NavigationPage(new Notificaciones());
+            notificaciones.Title = "Notificaciones";
 
             NavigationPage busqueda = new NavigationPage(new Busqueda());
             busqueda.Title = "Buscar";
 
-            NavigationPage notificaciones = new NavigationPage(new Busqueda());
-            notificaciones.Title = "Notificaciones";
-
-            NavigationPage crear_receta = new NavigationPage(new Busqueda());
-            crear_receta.Title = "+";
-
-            Children.Add(perfil);
             Children.Add(newsfeed);
-            Children.Add(busqueda);
             Children.Add(notificaciones);
-            Children.Add(crear_receta);
+            Children.Add(busqueda);
         }
     }
 }

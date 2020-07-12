@@ -14,6 +14,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -43,7 +44,7 @@
                             Text="Seguidores" 
                             HorizontalOptions="FillAndExpand"
                             Clicked="mostrar_seguidores"/>
-                    <ScrollView Grid.Row="3" Grid.ColumnSpan="2">
+                    <ScrollView Grid.Row="4" Grid.ColumnSpan="2">
                         <StackLayout Spacing="100">
                             <ListView ItemsSource="{Binding listRecipes}"
                                 HasUnevenRows="True"

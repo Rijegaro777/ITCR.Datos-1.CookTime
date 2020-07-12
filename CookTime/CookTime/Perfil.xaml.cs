@@ -33,7 +33,7 @@ namespace CookTime
                 seguir.Text = "Seguir";
                 seguir.Clicked += async (sender, args) => await Cliente.get_instance().seguir_usuario(dueno_perfil, grid_perfil, seguir);
                 Grid.SetColumnSpan(seguir, 2);
-                Grid.SetRow(seguir, 2);
+                Grid.SetRow(seguir, 3);
 
                 grid_perfil.Children.Add(seguir);
             }
