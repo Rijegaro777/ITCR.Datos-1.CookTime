@@ -1,13 +1,20 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CookTime
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    // Learn more about making custom code visible in the Xamarin.Forms previewer
+    // by visiting https://aka.ms/xamarinforms-previewer
+    [DesignTimeVisible(false)]
     public partial class Perfil : ContentPage
     {
         private Usuario dueno;
+        public IList listRecipes { get; private set; }
 
         /// <summary>
         /// Muestra el perfil de un usuario.
@@ -31,6 +38,60 @@ namespace CookTime
                 grid_perfil.Children.Add(seguir);
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
+
+            listRecipes = new List<Recipes>();
+
+            listRecipes.Add(new Recipes
+            {
+                Name = "Lasagna",
+                Date = "06 de Julio",
+                Difficulty = "Dificultad: " + "1",
+                Url = "Lasagna.jpg"
+            });
+
+            listRecipes.Add(new Recipes
+            {
+                Name = "Pasta",
+                Date = "07 de Julio",
+                Difficulty = "Dificultad: " + "2",
+                Url = "Pasta.jpg"
+            });
+
+            listRecipes.Add(new Recipes
+            {
+                Name = "Ensalada",
+                Date = "06 de Julio",
+                Difficulty = "Dificultad: " + "3",
+                Url = "Salad.jpg"
+            });
+
+            listRecipes.Add(new Recipes
+            {
+                Name = "Huevos con Tocino",
+                Date = "07 de Julio",
+                Difficulty = "Dificultad: " + "4",
+                Url = "Huevo_y_tosino.jpg"
+            });
+
+            listRecipes.Add(new Recipes
+            {
+                Name = "Pasta",
+                Date = "06 de Julio",
+                Difficulty = "Dificultad: " + "5",
+                Url = "Pasta.jpg"
+            });
+
+            BindingContext = this;
+
+        }
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Recipes selectedItem = e.SelectedItem as Recipes;
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Recipes tappedItem = e.Item as Recipes;
         }
 
         /// <summary>
