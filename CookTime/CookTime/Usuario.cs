@@ -9,7 +9,7 @@ namespace CookTime
         public string contrasena;
         public string email, nombre, apellido, foto;
         public int edad, id;
-        public List<int> seguidos, seguidores, recetas;
+        public List<int> seguidos, seguidores, recetas, empresas;
         public Boolean is_chef;
 
         /// <summary>
@@ -42,6 +42,7 @@ namespace CookTime
             this.seguidos = new List<int>();
             this.seguidores = new List<int>();
             this.recetas = new List<int>();
+            this.empresas = new List<int>();
             this.is_chef = false;
         }
 
@@ -93,6 +94,11 @@ namespace CookTime
         public List<int> get_recetas()
         {
             return recetas;
+        }
+
+        public List<int> get_empresas()
+        {
+            return empresas;
         }
     }
 }

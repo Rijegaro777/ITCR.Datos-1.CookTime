@@ -23,9 +23,17 @@ namespace CookTime
             {
                 await Navigation.PushModalAsync(new NavigationPage(new Perfil(usuario, false)));
             }
-            else if (lista_menu.SelectedItem.ToString() == "Crear Receta")
+            else if (lista_menu.SelectedItem.ToString() == "Mis empresas")
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new MisEmpresas(usuario)));
+            }
+            else if (lista_menu.SelectedItem.ToString() == "Crear receta")
             {
                 await Navigation.PushModalAsync(new NavigationPage(new CrearReceta()));
+            }
+            else if (lista_menu.SelectedItem.ToString() == "Crear empresa")
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new CrearEmpresa()));
             }
             else
             {

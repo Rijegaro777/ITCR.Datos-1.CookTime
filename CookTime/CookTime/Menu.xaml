@@ -10,8 +10,10 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Perfil</x:String>
-                    <x:String>Crear Receta</x:String>
-                    <x:String>Configuracion</x:String>
+                    <x:String>Mis empresas</x:String>
+                    <x:String>Crear receta</x:String>
+                    <x:String>Crear empresa</x:String>
+                    <x:String>Configuración</x:String>
                 </x:Array>
             </ListView.ItemsSource>
         </ListView>
