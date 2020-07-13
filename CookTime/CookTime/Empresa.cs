@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace CookTime
 {
-    class Empresa
+    public class Empresa
     {
         public String nombre, logo, contacto, horario, ubicacion;
         public int id;
@@ -22,7 +23,7 @@ namespace CookTime
             this.contacto = contacto;
             this.horario = horario;
             this.ubicacion = "-1";
-            this.id = -1;
+            this.id = Math.Abs(nombre.GetHashCode());
         }
 
         public String get_nombre()

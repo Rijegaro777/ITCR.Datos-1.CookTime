@@ -28,6 +28,8 @@ namespace CookTime
             string horario = entry_horario.Text;
 
             Empresa empresa = new Empresa(nombre_empresa, contacto, horario);
+            usuario.get_empresas().Add(empresa.get_id());
+
             string empresa_json = JsonConvert.SerializeObject(empresa) + "%" + usuario.get_id();
             var userData = new StringContent(empresa_json, Encoding.UTF8, "text/plain");
 
@@ -35,8 +37,6 @@ namespace CookTime
             response.EnsureSuccessStatusCode();
 
             string result = response.StatusCode.ToString();
-
-            usuario.get_empresas().Add(empresa.get_id());
 
             await DisplayAlert("Exitoso", "Empresa creada exitosamente", "Ok");
             await Application.Current.MainPage.Navigation.PopModalAsync();
