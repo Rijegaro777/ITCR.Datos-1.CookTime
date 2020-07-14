@@ -8,8 +8,18 @@
              x:Class="CookTime.Busqueda">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="search_bar_personas" SearchButtonPressed="buscar_personas"/>
-            <ListView x:Name="list_personas" ItemTapped="list_personas_ItemTapped"/>
+            <SearchBar x:Name="search_bar_personas" SearchButtonPressed="buscar"/>
+            <Picker x:Name="elegir_busqueda" Title="¿Qué desea buscar?" HorizontalOptions="Center">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personas</x:String>
+                        <x:String>Empresas</x:String>
+                        <x:String>Recetas</x:String>
+                        <x:String>Recomendaciones aleatorias</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <ListView x:Name="lista_busqueda" ItemTapped="lista_busqueda_ItemTapped"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
