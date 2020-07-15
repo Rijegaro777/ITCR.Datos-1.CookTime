@@ -89,7 +89,7 @@
                 <BoxView Margin="0,0,0,8" Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for home label and icon  -->
-                <Grid
+                <!--<Grid
                     x:Name="HomeGrid"
                     BackgroundColor="{DynamicResource Gray-White}">
                     <Grid.ColumnDefinitions>
@@ -117,7 +117,7 @@
                         <TapGestureRecognizer Command="{Binding HomeCommand}" CommandParameter="{x:Reference HomeGrid}" />
                     </Grid.GestureRecognizers>
 
-                </Grid>
+                </Grid>-->
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -218,7 +218,7 @@
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for profile label and icon  -->
-                <Grid
+                <!--<Grid
                     x:Name="ProfileGrid"
                     BackgroundColor="{DynamicResource Gray-White}">
 
@@ -245,7 +245,7 @@
                         <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
                     </Grid.GestureRecognizers>
 
-                </Grid>
+                </Grid>-->
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 

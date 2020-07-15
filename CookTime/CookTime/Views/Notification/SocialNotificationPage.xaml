@@ -20,20 +20,20 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
+    <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
 
-                <!--  Title View  -->
+                --><!--  Title View  --><!--
                 <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
 
-                    <!-- Back button -->
+                    --><!-- Back button --><!--
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
                                           Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference socialNotificationPage}}"/>
                     </controls:TitleView.LeadingView>
 
-                    <!-- More button -->
+                    --><!-- More button --><!--
                     <controls:TitleView.TrailingView>
                         <buttons:SfButton Text="{StaticResource More}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
                                           Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference socialNotificationPage}}" />
@@ -44,7 +44,7 @@
 
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>
+    </ContentPage.ControlTemplate>-->
 
     <ContentPage.Content>
 

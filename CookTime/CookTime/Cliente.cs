@@ -20,7 +20,11 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
+<<<<<<< Updated upstream
             this.uri = "http://192.168.1.2:8080/";
+=======
+            this.uri = "http://192.168.50.13:8080/";
+>>>>>>> Stashed changes
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
