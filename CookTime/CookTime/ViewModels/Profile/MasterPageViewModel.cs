@@ -30,7 +30,7 @@ namespace CookTime.ViewModels.Profile
         public MasterPageViewModel()
         {
             this.profileName = "John Doe";
-            this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
+            this.profileImage = App.BaseImageUrl + "ProfileImage2.png";
             this.email = "johndoe@gmail.com";
 
             this.HomeCommand = new Command(this.HomeButtonClicked);
