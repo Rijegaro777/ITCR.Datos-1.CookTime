@@ -63,23 +63,23 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <Image Source="{Binding Url}"
+                                                <Image Source="{Binding logo}"
                                                        Aspect="AspectFill"
                                                        HeightRequest="100"
                                                        WidthRequest="100"
                                                        VerticalOptions="Center" />
                                                 <Label Grid.Column="1"
-                                                       Text="{Binding Name}"
+                                                       Text="{Binding nombre}"
                                                        FontAttributes="Bold"
                                                        VerticalOptions="Start"
                                                        HorizontalOptions="Center" />
                                                 <Label Grid.Column="1"
-                                                       Text="{Binding Date}"
+                                                       Text="{Binding horario}"
                                                        FontAttributes="Bold"
                                                        VerticalOptions="Center"
                                                        HorizontalOptions="Center" />
                                                 <Label Grid.Column="1"
-                                                       Text="{Binding Difficulty}"
+                                                       Text="{Binding contacto}"
                                                        VerticalOptions="End"
                                                        HorizontalOptions="Center"/>
                                             </Grid>

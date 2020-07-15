@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             NavigationPage.HasNavigationBar="False"
              x:Class="CookTime.CrearReceta">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="30,30" Spacing="40">
+            <Entry x:Name="entry_nombre" Placeholder="Nombre de la receta" PlaceholderColor="Black" Opacity="0.7"/>
+            <Entry x:Name="entry_contacto" Placeholder="Método de contacto" PlaceholderColor="Black" Opacity="0.7"/>
+            <Entry x:Name="entry_horario" Placeholder="Horario de atención" PlaceholderColor="Black" Opacity="0.7"/>
+            <Button x:Name="boton_crear_receta" Text="Crear receta" Clicked="boton_crear_receta_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

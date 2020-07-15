@@ -81,42 +81,42 @@ namespace CookTime
 
             listRecipes.Add(new Recipes
             {
-                Name = "Lasagna",
-                Date = "06 de Julio",
-                Difficulty = "Dificultad: " + "1",
-                Url = "Lasagna.jpg"
+                nombre = "Lasagna",
+                logo = "Lasagna.jpg",
+                contacto = "Dificultad: " + "1",
+                horario = "06 de Julio"
             });
 
             listRecipes.Add(new Recipes
             {
-                Name = "Pasta",
-                Date = "07 de Julio",
-                Difficulty = "Dificultad: " + "2",
-                Url = "Pasta.jpg"
+                nombre = "Pasta",
+                logo = "Pasta.jpg",
+                contacto = "Dificultad: " + "2",
+                horario = "07 de Julio"
             });
 
             listRecipes.Add(new Recipes
             {
-                Name = "Ensalada",
-                Date = "06 de Julio",
-                Difficulty = "Dificultad: " + "3",
-                Url = "Salad.jpg"
+                nombre = "Ensalada",
+                logo = "Salad.jpg",
+                contacto = "Dificultad: " + "3",
+                horario = "06 de Julio"
             });
 
             listRecipes.Add(new Recipes
             {
-                Name = "Huevos con Tocino",
-                Date = "07 de Julio",
-                Difficulty = "Dificultad: " + "4",
-                Url = "Huevo_y_tosino.jpg"
+                nombre = "Huevos con Tocino",
+                logo = "Huevo_y_tosino.jpg",
+                contacto = "Dificultad: " + "4",
+                horario = "07 de Julio"
             });
 
             listRecipes.Add(new Recipes
             {
-                Name = "Pasta",
-                Date = "06 de Julio",
-                Difficulty = "Dificultad: " + "5",
-                Url = "Pasta.jpg"
+                nombre = "Pasta",
+                logo = "Pasta.jpg",
+                contacto = "Dificultad: " + "5",
+                horario = "06 de Julio"
             });
 
             BindingContext = this;
