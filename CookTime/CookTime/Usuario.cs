@@ -9,8 +9,10 @@ namespace CookTime
         public string contrasena;
         public string email, nombre, apellido, foto;
         public int edad, id;
+        public float promedio_calificacion;
         public List<int> seguidos, seguidores, recetas, empresas;
-        public Boolean is_chef;
+        public List<float> calificaciones;
+        public bool is_chef;
 
         /// <summary>
         /// Clase que representa a un usuario.
@@ -39,10 +41,12 @@ namespace CookTime
             this.foto = "vacio.jpg";
             this.edad = edad;
             this.id = -1;
+            this.promedio_calificacion = 0;
             this.seguidos = new List<int>();
             this.seguidores = new List<int>();
             this.recetas = new List<int>();
             this.empresas = new List<int>();
+            this.calificaciones = new List<float>();
             this.is_chef = false;
         }
 
@@ -99,6 +103,16 @@ namespace CookTime
         public List<int> get_empresas()
         {
             return empresas;
+        }
+
+        public float get_promedio_calificación()
+        {
+            return promedio_calificacion;
+        }
+
+        public List<float> get_calificaiones()
+        {
+            return calificaciones;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,7 +20,7 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.1.7:8080/";
+            this.uri = "http://192.168.1.2:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -124,6 +125,19 @@ namespace CookTime
 
             var response = await client
                 .GetStringAsync("/rest/servicios/seguir_usuario?usuario="+usuario_actual.get_id().ToString()+"&usuario_seguido="+usuario.get_id().ToString());
+        }
+
+        public async Task puntuar_usuario(Usuario dueno_perfil, string puntuacion, Grid grid, Picker picker, Button boton, Label label)
+        {
+            grid.Children.Remove(picker);
+            grid.Children.Remove(boton);
+
+            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/puntuar_usuario/" + dueno_perfil.get_id().ToString() + "%" + puntuacion);
+            string final_response = response.ToString();
+
+            dueno_perfil.promedio_calificacion = float.Parse(final_response);
+
+            label.Text = "Puntuación: " + final_response;
         }
     }
 }

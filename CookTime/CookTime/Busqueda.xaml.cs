@@ -82,7 +82,7 @@ namespace CookTime
             {
                 if (sugerencias_empresas.Count == 0)
                 {
-                    nombres_sugerencias.Add("No se encontraron usuarios");
+                    nombres_sugerencias.Add("No se encontraron empresas");
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace CookTime
             }
             catch
             {
-                nombres_sugerencias.Add("No se encontraron usuarios");
+                nombres_sugerencias.Add("No se encontraron empresas");
             }
 
             lista_busqueda.ItemsSource = nombres_sugerencias;

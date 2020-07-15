@@ -14,6 +14,7 @@ namespace CookTime
     public partial class Perfil : ContentPage
     {
         private Usuario dueno;
+        Label puntuacion;
         public IList listRecipes { get; private set; }
 
         /// <summary>
@@ -27,15 +28,52 @@ namespace CookTime
 
             dueno = dueno_perfil;
 
+            if (dueno_perfil.is_chef)
+            {
+                puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificación(),
+                                               FontSize = 18,
+                                               HorizontalTextAlignment = TextAlignment.Center,
+                                               HorizontalOptions = LayoutOptions.Fill
+                                             };
+               
+                Grid.SetColumnSpan(puntuacion, 2);
+                Grid.SetRow(puntuacion, 3);
+                grid_perfil.Children.Add(puntuacion);
+            }
             if (es_ajeno && !Cliente.get_instance().get_usuario().get_seguidos().Contains(dueno_perfil.get_id()))
             {
                 Button seguir = new Button();
                 seguir.Text = "Seguir";
                 seguir.Clicked += async (sender, args) => await Cliente.get_instance().seguir_usuario(dueno_perfil, grid_perfil, seguir);
                 Grid.SetColumnSpan(seguir, 2);
-                Grid.SetRow(seguir, 3);
-
+                Grid.SetRow(seguir, 4);
                 grid_perfil.Children.Add(seguir);
+            }
+            if (es_ajeno && dueno_perfil.is_chef)
+            {
+                List<int> calificaciones = new List<int>();
+                calificaciones.Add(1);
+                calificaciones.Add(2);
+                calificaciones.Add(3);
+                calificaciones.Add(4);
+                calificaciones.Add(5);
+                Picker picker_puntuacion = new Picker();
+                picker_puntuacion.Title = "Puntuación";
+                picker_puntuacion.ItemsSource = calificaciones;
+
+                Button boton_puntuar = new Button();
+                boton_puntuar.Text = "Puntuar";
+                boton_puntuar.Clicked += async (sender, args) => await Cliente.get_instance()
+                .puntuar_usuario(dueno_perfil, picker_puntuacion.SelectedItem.ToString(), grid_perfil, picker_puntuacion, boton_puntuar, puntuacion);
+
+                Grid.SetRow(picker_puntuacion, 5);
+                Grid.SetColumn(picker_puntuacion, 0);
+
+                Grid.SetRow(boton_puntuar, 5);
+                Grid.SetColumn(boton_puntuar, 1);
+                
+                grid_perfil.Children.Add(picker_puntuacion);
+                grid_perfil.Children.Add(boton_puntuar);
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
 
