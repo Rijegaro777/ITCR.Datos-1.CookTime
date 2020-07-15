@@ -12,9 +12,11 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BoardEmpresa : ContentPage
     {
+        Empresa empresa_actual;
         public BoardEmpresa(Empresa empresa, Usuario usuario)
         {
             InitializeComponent();
+            empresa_actual = empresa;
             if (!usuario.get_empresas().Contains(empresa.get_id()))
             {
                 Button seguir = new Button();
@@ -38,6 +40,11 @@ namespace CookTime
             nombre.Text = empresa.get_nombre();
             horario.Text = "Horario de atención: " + empresa.get_horario();
             contacto.Text = "Método de contacto: " +empresa.get_contacto();
+        }
+
+        private async void ver_ubicacion_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new Mapa(empresa_actual));
         }
     }
 }

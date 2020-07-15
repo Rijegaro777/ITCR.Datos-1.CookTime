@@ -14,6 +14,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -41,6 +42,12 @@
                            FontSize="Medium"
                            FontAttributes="Bold"
                            HorizontalOptions="CenterAndExpand"/>
+                <Button x:Name="ver_ubicacion" 
+                        Text="Ubicación" 
+                        Grid.Row="5" 
+                        Grid.ColumnSpan="2"
+                        Clicked="ver_ubicacion_Clicked"
+                        HorizontalOptions="Fill"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

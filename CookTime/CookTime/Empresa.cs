@@ -16,13 +16,13 @@ namespace CookTime
         /// <param name="nombre">El nombre de la empresa.</param>
         /// <param name="contacto">El método de contacto de la empresa.</param>
         /// <param name="horario">El horario de atención de la empresa.</param>
-        public Empresa(String nombre, String contacto, String horario)
+        public Empresa(String nombre, String contacto, String horario, string ubicacion)
         {
             this.nombre = nombre;
             this.logo = "vacio.jpg";
             this.contacto = contacto;
             this.horario = horario;
-            this.ubicacion = "-1";
+            this.ubicacion = ubicacion;
             this.id = Math.Abs(nombre.GetHashCode());
         }
 
