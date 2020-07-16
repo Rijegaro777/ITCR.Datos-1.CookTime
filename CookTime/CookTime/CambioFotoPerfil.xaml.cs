@@ -44,11 +44,12 @@ namespace CookTime
             if(imagen_seleccionada == null)
             {
                 await DisplayAlert("Error", "Seleccione una imagen", "Ok");
+                return;
             }
             var stream_foto = imagen_seleccionada.GetStream();
             foto_perfil.Source = ImageSource.FromStream(() => stream_foto);
             stream_foto = imagen_seleccionada.GetStream();
-            ImageUploader.get_instance_photos().subir_imagen(stream_foto);
+            ImageUploader.get_instance_photos().subir_imagen(stream_foto, "photos");
             await DisplayAlert("Éxito", "Foto cambiada exitósamente", "Ok");
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }

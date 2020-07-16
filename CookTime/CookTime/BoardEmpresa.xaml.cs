@@ -21,7 +21,12 @@ namespace CookTime
         public BoardEmpresa(Empresa empresa, Usuario usuario)
         {
             InitializeComponent();
+
             empresa_actual = empresa;
+            if(empresa_actual.get_logo() != "vacio.jpg")
+            {
+                logo_empresa.Source = empresa_actual.get_logo();
+            }
             if (!usuario.get_empresas().Contains(empresa.get_id()))
             {
                 Button seguir = new Button();

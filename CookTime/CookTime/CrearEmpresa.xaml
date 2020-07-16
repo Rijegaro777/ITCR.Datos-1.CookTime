@@ -21,6 +21,7 @@
                 <Entry x:Name="entry_nombre" Placeholder="Nombre de la empresa" PlaceholderColor="Black" Opacity="0.7"/>
                 <Entry x:Name="entry_contacto" Placeholder="Método de contacto" PlaceholderColor="Black" Opacity="0.7"/>
                 <Entry x:Name="entry_horario" Placeholder="Horario de atención" PlaceholderColor="Black" Opacity="0.7"/>
+                <Button x:Name="boton_subir_logo" Text="Subir logo" Clicked="subir_logo"/>
                 <Label x:Name="label_ubicación" Text="¿Dónde está ubicada su empresa?" FontSize="Medium" HorizontalOptions="Center"/>
             </StackLayout>
 

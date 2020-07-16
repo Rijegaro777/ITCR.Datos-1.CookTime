@@ -50,11 +50,11 @@ namespace CookTime
         /// <returns>Una instancia única de ImageUploader para logos.</returns>
         public static ImageUploader get_instance_logos()
         {
-            if (instance_photos == null)
+            if (instance_logos == null)
             {
-                instance_photos = new ImageUploader("logos");
+                instance_logos = new ImageUploader("logos");
             }
-            return instance_photos;
+            return instance_logos;
         }
 
         /// <summary>
@@ -63,23 +63,30 @@ namespace CookTime
         /// <returns>Una instancia única de ImageUploader para recipes.</returns>
         public static ImageUploader get_instance_recipes()
         {
-            if (instance_photos == null)
+            if (instance_recipes == null)
             {
-                instance_photos = new ImageUploader("recipes");
+                instance_recipes = new ImageUploader("recipes");
             }
-            return instance_photos;
+            return instance_recipes;
         }
 
         /// <summary>
         /// Sube una imagen al contenedor de Azure Storage.
         /// </summary>
         /// <param name="stream">El stream de la imagen a subir.</param>
-        public async void subir_imagen(Stream stream)
+        public async void subir_imagen(Stream stream, string contenedor)
         {
             string nombre_archivo = new Random().Next(10000).ToString();
             CloudBlockBlob blob = cliente_contenedor.GetBlockBlobReference(nombre_archivo);
             await blob.UploadFromStreamAsync(stream);
-            Cliente.get_instance().cambiar_foto(blob.Uri);
+            if(contenedor == "photos")
+            {
+                Cliente.get_instance().cambiar_foto(blob.Uri);
+            }
+            else if(contenedor.Split('&')[0] == "logos")
+            {
+                Cliente.get_instance().cambiar_logo(blob.Uri, contenedor.Split('&')[1]);
+            }
         }
 
     }

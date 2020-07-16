@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace CookTime
     public partial class CrearEmpresa : ContentPage
     {
         Usuario usuario = Cliente.get_instance().get_usuario();
+        Empresa empresa_actual;
+        MediaFile imagen_seleccionada;
         double latitud = 0;
         double longitud = 0;
         Pin pin;
@@ -40,6 +44,7 @@ namespace CookTime
                 string ubicacion = pin.Position.Latitude.ToString() + "?" + pin.Position.Longitude.ToString();
 
                 Empresa empresa = new Empresa(nombre_empresa, contacto, horario, ubicacion);
+                empresa_actual = empresa;
                 usuario.get_empresas().Add(empresa.get_id());
 
                 string empresa_json = JsonConvert.SerializeObject(empresa) + "%" + usuario.get_id();
@@ -49,6 +54,9 @@ namespace CookTime
                 response.EnsureSuccessStatusCode();
 
                 string result = response.StatusCode.ToString();
+                
+                var stream_logo = imagen_seleccionada.GetStream();
+                ImageUploader.get_instance_logos().subir_imagen(stream_logo, "logos&" + empresa_actual.get_id().ToString());
 
                 await DisplayAlert("Exitoso", "Empresa creada exitosamente", "Ok");
                 await Application.Current.MainPage.Navigation.PopModalAsync();
@@ -76,6 +84,28 @@ namespace CookTime
                 Position = new Position(latitud, longitud)
             };
             mapa.Pins.Add(pin);
+        }
+
+        private async void subir_logo(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Error", "Archivo no soportado", "Ok");
+                return;
+            }
+            var media_options = new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Medium
+            };
+            
+            imagen_seleccionada = await CrossMedia.Current.PickPhotoAsync(media_options);
+
+            if (imagen_seleccionada == null)
+            {
+                await DisplayAlert("Error", "Seleccione una imagen", "Ok");
+                return;
+            }
         }
     }
 }

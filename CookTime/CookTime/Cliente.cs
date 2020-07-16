@@ -93,6 +93,19 @@ namespace CookTime
             string final_respose = response.StatusCode.ToString();
         }
 
+
+        public async void cambiar_logo(Uri uri, string empresa_id)
+        {
+            usuario_actual.foto = uri.ToString();
+            string mensaje = uri.ToString() + "&" + empresa_id;
+            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
+
+            var response = await client.PostAsync("rest/servicios/cambiar_logo", mensaje_http);
+            response.EnsureSuccessStatusCode();
+
+            string final_respose = response.StatusCode.ToString();
+        }
+
         /// <summary>
         /// Retorna el uri que se usará para comunicarse con el servidor.
         /// </summary>
