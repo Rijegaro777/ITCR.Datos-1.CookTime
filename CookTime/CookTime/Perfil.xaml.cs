@@ -28,6 +28,10 @@ namespace CookTime
 
             dueno = dueno_perfil;
 
+            if(dueno_perfil.get_foto() != "vacio.jpg")
+            {
+                foto_perfil.Source = dueno_perfil.get_foto();
+            }
             if (dueno_perfil.is_chef)
             {
                 puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificación(),
@@ -56,6 +60,7 @@ namespace CookTime
                 calificaciones.Add(2);
                 calificaciones.Add(3);
                 calificaciones.Add(4);
+
                 calificaciones.Add(5);
                 Picker picker_puntuacion = new Picker();
                 picker_puntuacion.Title = "Puntuación";

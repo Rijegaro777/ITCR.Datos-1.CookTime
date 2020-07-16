@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +12,11 @@ namespace CookTime
         List<Empresa> empresas = new List<Empresa>();
         List<string> lista_nombres = new List<string>();
         Usuario usuario_actual;
+
+        /// <summary>
+        /// Muestra una lista de las empresas que ha creado el usuario.
+        /// </summary>
+        /// <param name="usuario">El usuario que desea ver sus empresas creadas,</param>
         public MisEmpresas(Usuario usuario)
         {
             InitializeComponent();
@@ -51,7 +51,7 @@ namespace CookTime
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void lista_empresas_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void empresa_seleccionada(object sender, ItemTappedEventArgs e)
         {
             int pos = lista_nombres.IndexOf(lista_empresas.SelectedItem.ToString());
             await Navigation.PushModalAsync(new NavigationPage(new BoardEmpresa(empresas[pos], usuario_actual)));

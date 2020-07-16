@@ -145,7 +145,7 @@ namespace CookTime
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void lista_busqueda_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void item_seleccionado(object sender, ItemTappedEventArgs e)
         {
             if (!nombres_sugerencias.Contains("No se encontraron usuarios"))
             {

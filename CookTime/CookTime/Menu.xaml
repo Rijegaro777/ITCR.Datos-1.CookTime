@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="CookTime.Menu">
     <ContentPage.Content>
-        <ListView x:Name="lista_menu" ItemTapped="lista_menu_ItemTapped">
+        <ListView x:Name="lista_menu" ItemTapped="item_seleccionado">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Perfil</x:String>

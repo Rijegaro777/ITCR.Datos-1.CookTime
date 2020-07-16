@@ -13,6 +13,11 @@ namespace CookTime
     public partial class BoardEmpresa : ContentPage
     {
         Empresa empresa_actual;
+        /// <summary>
+        /// Muestra el board de una empresa.
+        /// </summary>
+        /// <param name="empresa">La empresa que se quiere mostrar.</param>
+        /// <param name="usuario">El usuarion que desea abrir la empresa.</param>
         public BoardEmpresa(Empresa empresa, Usuario usuario)
         {
             InitializeComponent();
@@ -42,6 +47,11 @@ namespace CookTime
             contacto.Text = "Método de contacto: " +empresa.get_contacto();
         }
 
+        /// <summary>
+        /// Muestra la ubicación de la empresa.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ver_ubicacion_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new Mapa(empresa_actual));

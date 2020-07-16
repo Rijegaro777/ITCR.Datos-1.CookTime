@@ -25,7 +25,12 @@ namespace CookTime
             InitializeComponent();
         }
 
-        private async void boton_crear_empresa_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Crea la empresa y solicita al server que se actualicen los JSON.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void boton_crear_empresa_clicked(object sender, EventArgs e)
         {
             if(mapa.Pins.Count != 0)
             {
@@ -54,7 +59,12 @@ namespace CookTime
             }
         }
 
-        private void mapa_MapClicked(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
+        /// <summary>
+        /// Coloca un pin en la posición clickeada del mapa.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void colocar_pin(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
             mapa.Pins.Clear();
             latitud = e.Position.Latitude;

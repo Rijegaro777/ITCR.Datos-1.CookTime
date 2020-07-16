@@ -30,7 +30,7 @@
                            FontAttributes="Bold"
                            HorizontalOptions="CenterAndExpand"/>
                     <ContentView HeightRequest="170" WidthRequest="170" HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="2">
-                            <Image
+                            <Image x:Name="foto_perfil"
                                 Aspect="AspectFit"
                                 Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
                     </ContentView>

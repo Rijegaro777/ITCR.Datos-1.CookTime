@@ -20,11 +20,7 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
-<<<<<<< Updated upstream
             this.uri = "http://192.168.1.2:8080/";
-=======
-            this.uri = "http://192.168.50.13:8080/";
->>>>>>> Stashed changes
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -82,6 +78,22 @@ namespace CookTime
         }
 
         /// <summary>
+        /// Cambia la foto de perfil del usuario que está usando la aplicación.
+        /// </summary>
+        /// <param name="uri">La Uri donde está alojada la foto nueva.</param>
+        public async void cambiar_foto(Uri uri)
+        {
+            usuario_actual.foto = uri.ToString();
+            string mensaje = uri.ToString() + "&" + usuario_actual.get_id().ToString();
+            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
+
+            var response = await client.PostAsync("rest/servicios/cambiar_foto", mensaje_http);
+            response.EnsureSuccessStatusCode();
+
+            string final_respose = response.StatusCode.ToString();
+        }
+
+        /// <summary>
         /// Retorna el uri que se usará para comunicarse con el servidor.
         /// </summary>
         /// <returns>
@@ -117,9 +129,9 @@ namespace CookTime
         /// envía la solicitud al servidor para actualizar el archivo JSON. Elimina la opción de seguir usuarios
         /// que ya están en la lista de seguidos.
         /// </summary>
-        /// <param name="usuario">El usuario que será seguido</param>
-        /// <param name="grid">El grid del perfil del usuario a seguir</param>
-        /// <param name="button">El botón para seguir al usuario</param>
+        /// <param name="usuario">El usuario que será seguido.</param>
+        /// <param name="grid">El grid del perfil del usuario a seguir.</param>
+        /// <param name="button">El botón para seguir al usuario.</param>
         /// <returns></returns>
         public async Task seguir_usuario(Usuario usuario, Grid grid, Button button)
         {
@@ -131,15 +143,25 @@ namespace CookTime
                 .GetStringAsync("/rest/servicios/seguir_usuario?usuario="+usuario_actual.get_id().ToString()+"&usuario_seguido="+usuario.get_id().ToString());
         }
 
-        public async Task puntuar_usuario(Usuario dueno_perfil, string puntuacion, Grid grid, Picker picker, Button boton, Label label)
+        /// <summary>
+        /// Puntúa al usuario recibido y elimina las opciones para puntuarlo de su perfil. Envía la solicitud al servidor para actualizar el archivo JSON
+        /// </summary>
+        /// <param name="usuario">El usuario que va a recibir la calificación.</param>
+        /// <param name="puntuacion">La puntuación recibida por el usuario.</param>
+        /// <param name="grid">El gri del perfil del usuario que será puntuado.</param>
+        /// <param name="picker">El objeto que permite seleccionar la calificación.</param>
+        /// <param name="boton">El botón para puntuat al usuario.</param>
+        /// <param name="label">El label que muestra el promedio de puntuaciones del usuario.</param>
+        /// <returns></returns>
+        public async Task puntuar_usuario(Usuario usuario, string puntuacion, Grid grid, Picker picker, Button boton, Label label)
         {
             grid.Children.Remove(picker);
             grid.Children.Remove(boton);
 
-            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/puntuar_usuario/" + dueno_perfil.get_id().ToString() + "%" + puntuacion);
+            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/puntuar_usuario/" + usuario.get_id().ToString() + "%" + puntuacion);
             string final_response = response.ToString();
 
-            dueno_perfil.promedio_calificacion = float.Parse(final_response);
+            usuario.promedio_calificacion = float.Parse(final_response);
 
             label.Text = "Puntuación: " + final_response;
         }

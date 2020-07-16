@@ -6,11 +6,13 @@
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="CookTime.CambioFotoPerfil">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Seleccionar foto" Clicked="boton_seleccionar_foto_clicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="layout" Spacing ="100" VerticalOptions="Center">
+            <Image x:Name="foto_perfil" HorizontalOptions="Center" HeightRequest="170" WidthRequest="170"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

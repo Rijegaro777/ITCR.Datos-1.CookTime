@@ -19,7 +19,7 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <ListView x:Name="lista_busqueda" ItemTapped="lista_busqueda_ItemTapped"/>
+            <ListView x:Name="lista_busqueda" ItemTapped="item_seleccionado"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

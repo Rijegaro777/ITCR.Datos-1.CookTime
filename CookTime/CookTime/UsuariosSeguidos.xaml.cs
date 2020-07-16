@@ -10,6 +10,11 @@ namespace CookTime
     {
         List<string> lista_nombres = new List<string>();
         List<Usuario> lista_usuarios = new List<Usuario>();
+
+        /// <summary>
+        /// Muestra una lista con todos los seguidos del usuario.
+        /// </summary>
+        /// <param name="usuario">El usuario cuya lista de seguidos se mostrará</param>
         public UsuariosSeguidos(Usuario usuario)
         {
             InitializeComponent();
@@ -44,7 +49,7 @@ namespace CookTime
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void lista_seguidos_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void seguido_seleccionado(object sender, ItemTappedEventArgs e)
         {
             if (!lista_nombres.Contains("No se encontraron usuarios"))
             {

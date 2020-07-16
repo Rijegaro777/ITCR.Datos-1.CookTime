@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="CookTime.Configuración">
     <ContentPage.Content>
-        <ListView x:Name="lista_configuracion" ItemTapped="lista_configuracion_ItemTapped">
+        <ListView x:Name="lista_configuracion" ItemTapped="item_seleccionado">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Cambiar foto de perfil</x:String>

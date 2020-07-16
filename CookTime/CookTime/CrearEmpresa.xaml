@@ -24,7 +24,7 @@
                 <Label x:Name="label_ubicación" Text="¿Dónde está ubicada su empresa?" FontSize="Medium" HorizontalOptions="Center"/>
             </StackLayout>
 
-            <map:Map x:Name="mapa" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="0" MapClicked="mapa_MapClicked">
+            <map:Map x:Name="mapa" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="0" MapClicked="colocar_pin">
                 <x:Arguments>
                     <map:MapSpan>
                         <x:Arguments>
@@ -41,7 +41,7 @@
                 </x:Arguments>
             </map:Map>
 
-            <Button x:Name="boton_crear_empresa" Text="Crear empresa" Clicked="boton_crear_empresa_Clicked" Grid.Row="2" Grid.Column="0"/>
+            <Button x:Name="boton_crear_empresa" Text="Crear empresa" Clicked="boton_crear_empresa_clicked" Grid.Row="2" Grid.Column="0"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

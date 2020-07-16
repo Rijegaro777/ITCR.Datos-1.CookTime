@@ -8,7 +8,7 @@
              x:Class="CookTime.UsuariosSeguidores">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lista_seguidores" ItemTapped="lista_seguidores_ItemTapped"/>
+            <ListView x:Name="lista_seguidores" ItemTapped="seguidor_seleccionado"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
