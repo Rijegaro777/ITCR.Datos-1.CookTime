@@ -6,11 +6,21 @@
              mc:Ignorable="d"
              x:Class="CookTime.CrearReceta">
     <ContentPage.Content>
-        <StackLayout Padding="30,30" Spacing="40">
-            <Entry x:Name="entry_nombre" Placeholder="Nombre de la receta" PlaceholderColor="Black" Opacity="0.7"/>
-            <Entry x:Name="entry_contacto" Placeholder="Método de contacto" PlaceholderColor="Black" Opacity="0.7"/>
-            <Entry x:Name="entry_horario" Placeholder="Horario de atención" PlaceholderColor="Black" Opacity="0.7"/>
-            <Button x:Name="boton_crear_receta" Text="Crear receta" Clicked="boton_crear_receta_Clicked"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="30,30" Spacing="40">
+                <Entry x:Name="entry_nombre" Placeholder="Nombre de la receta" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_tipo" Placeholder="Tipo de receta" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_porciones" Placeholder="Numero de porciones" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_duracion" Placeholder="Tiempo de preparacion" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_tiempo" Placeholder="Tiempo de comida" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_dificultad" Placeholder="Dificultad" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_dieta" Placeholder="Tipo de dieta" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_foto" Placeholder="Foto" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_ingredientes" Placeholder="Ingredientes" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_pasos" Placeholder="Pasos" PlaceholderColor="Black" Opacity="0.7"/>
+                <Entry x:Name="entry_precio" Placeholder="precio" PlaceholderColor="Black" Opacity="0.7"/>
+                <Button x:Name="boton_crear_receta" Text="Crear receta" Clicked="boton_crear_receta_Clicked"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

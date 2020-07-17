@@ -24,10 +24,18 @@ namespace CookTime
         private async void boton_crear_receta_Clicked(object sender, EventArgs e)
         {
             string nombre_receta = entry_nombre.Text;
-            string contacto = entry_contacto.Text;
-            string horario = entry_horario.Text;
+            string tipo = entry_tipo.Text;
+            string porciones = entry_porciones.Text;
+            string duracion = entry_duracion.Text;
+            string tiempo = entry_tiempo.Text;
+            string dificultad = entry_dificultad.Text;
+            string dieta = entry_dieta.Text;
+            string foto = entry_foto.Text + ".jpg";
+            string ingredientes = entry_ingredientes.Text;
+            string pasos = entry_pasos.Text;
+            string precio = entry_precio.Text;
 
-            Receta receta = new Receta(nombre_receta, contacto, horario);
+            Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio);
             usuario.get_recetas().Add(receta.get_id());
 
             string receta_json = JsonConvert.SerializeObject(receta) + "%" + usuario.get_id();
