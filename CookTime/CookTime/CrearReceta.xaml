@@ -16,10 +16,30 @@
                 <Entry x:Name="entry_dificultad" Placeholder="Dificultad" PlaceholderColor="Black" Opacity="0.7"/>
                 <Entry x:Name="entry_dieta" Placeholder="Tipo de dieta" PlaceholderColor="Black" Opacity="0.7"/>
                 <Entry x:Name="entry_foto" Placeholder="Foto" PlaceholderColor="Black" Opacity="0.7"/>
-                <Entry x:Name="entry_ingredientes" Placeholder="Ingredientes" PlaceholderColor="Black" Opacity="0.7"/>
-                <Entry x:Name="entry_pasos" Placeholder="Pasos" PlaceholderColor="Black" Opacity="0.7"/>
+                <Editor x:Name="entry_ingredientes"
+                        Placeholder="Ingredientes"
+                        PlaceholderColor="Black"
+                        HeightRequest="100"
+                        AutoSize="TextChanges"
+                        IsSpellCheckEnabled="True"
+                        IsTextPredictionEnabled="True"
+                        BackgroundColor="White"
+                        Opacity="0.7"/>
+                <Editor x:Name="entry_pasos"
+                        Placeholder="Pasos"
+                        PlaceholderColor="Black"
+                        HeightRequest="250"
+                        AutoSize="TextChanges"
+                        IsSpellCheckEnabled="True"
+                        IsTextPredictionEnabled="True"
+                        BackgroundColor="White"
+                        Opacity="0.7"/>
                 <Entry x:Name="entry_precio" Placeholder="precio" PlaceholderColor="Black" Opacity="0.7"/>
-                <Button x:Name="boton_crear_receta" Text="Crear receta" Clicked="boton_crear_receta_Clicked"/>
+                <Button x:Name="boton_crear_receta"
+                        Text="Crear receta"
+                        TextColor="White"
+                        BackgroundColor="LightBlue"
+                        Clicked="boton_crear_receta_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
