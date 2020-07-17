@@ -68,7 +68,7 @@ namespace CookTime
             {
                 Button seguir = new Button();
                 seguir.Text = "Seguir";
-                //seguir.Clicked += async (sender, args) => await Cliente.get_instance().seguir_usuario(dueno_perfil, grid_perfil, seguir);
+                seguir.Clicked += async (sender, args) => await Cliente.get_instance().seguir_empresa(empresa, grid_empresa, seguir);
                 Grid.SetColumnSpan(seguir, 2);
                 Grid.SetRow(seguir, 6);
 

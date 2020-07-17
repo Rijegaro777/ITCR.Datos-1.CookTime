@@ -53,7 +53,6 @@ namespace CookTime
             return client;
         }
 
-
         /// <summary>
         /// Encripta el string ingresado utilizando hashMD5.
         /// </summary>
@@ -75,35 +74,6 @@ namespace CookTime
             }
 
             return sb.ToString().ToLower();
-        }
-
-        /// <summary>
-        /// Cambia la foto de perfil del usuario que está usando la aplicación.
-        /// </summary>
-        /// <param name="uri">La Uri donde está alojada la foto nueva.</param>
-        public async void cambiar_foto(Uri uri)
-        {
-            usuario_actual.foto = uri.ToString();
-            string mensaje = uri.ToString() + "&" + usuario_actual.get_id().ToString();
-            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
-
-            var response = await client.PostAsync("rest/servicios/cambiar_foto", mensaje_http);
-            response.EnsureSuccessStatusCode();
-
-            string final_respose = response.StatusCode.ToString();
-        }
-
-
-        public async void cambiar_logo(Uri uri, string empresa_id)
-        {
-            usuario_actual.foto = uri.ToString();
-            string mensaje = uri.ToString() + "&" + empresa_id;
-            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
-
-            var response = await client.PostAsync("rest/servicios/cambiar_logo", mensaje_http);
-            response.EnsureSuccessStatusCode();
-
-            string final_respose = response.StatusCode.ToString();
         }
 
         /// <summary>
@@ -138,6 +108,22 @@ namespace CookTime
         }
 
         /// <summary>
+        /// Cambia la foto de perfil del usuario que está usando la aplicación.
+        /// </summary>
+        /// <param name="uri">La Uri donde está alojada la foto nueva.</param>
+        public async void cambiar_foto(Uri uri)
+        {
+            usuario_actual.foto = uri.ToString();
+            string mensaje = uri.ToString() + "&" + usuario_actual.get_id().ToString();
+            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
+
+            var response = await client.PostAsync("rest/servicios/cambiar_foto", mensaje_http);
+            response.EnsureSuccessStatusCode();
+
+            string final_respose = response.StatusCode.ToString();
+        }
+
+        /// <summary>
         /// Agrega al usuario recibido a la lista de seguidos del usuario que está usando la aplicación y
         /// envía la solicitud al servidor para actualizar el archivo JSON. Elimina la opción de seguir usuarios
         /// que ya están en la lista de seguidos.
@@ -153,7 +139,7 @@ namespace CookTime
             usuario.get_seguidores().Add(usuario_actual.get_id());
 
             var response = await client
-                .GetStringAsync("/rest/servicios/seguir_usuario?usuario="+usuario_actual.get_id().ToString()+"&usuario_seguido="+usuario.get_id().ToString());
+                .GetStringAsync("/rest/servicios/seguir_usuario?usuario=" + usuario_actual.get_id().ToString() + "&usuario_seguido=" + usuario.get_id().ToString());
         }
 
         /// <summary>
@@ -180,6 +166,23 @@ namespace CookTime
         }
 
         /// <summary>
+        /// Cambia el logo de una empresa.
+        /// </summary>
+        /// <param name="uri">La Uri donde está alojado el nuevo logo.</param>
+        /// <param name="empresa_id">El id de la empresa cuyo logo cambiará.</param>
+        public async void cambiar_logo(Uri uri, string empresa_id)
+        {
+            usuario_actual.foto = uri.ToString();
+            string mensaje = uri.ToString() + "&" + empresa_id;
+            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
+
+            var response = await client.PostAsync("rest/servicios/cambiar_logo", mensaje_http);
+            response.EnsureSuccessStatusCode();
+
+            string final_respose = response.StatusCode.ToString();
+        }
+
+        /// <summary>
         /// Puntúa a la empresa recibida y elimina las opciones para puntuarlo de su board. Envía la solicitud al servidor para actualizar el archivo JSON
         /// </summary>
         /// <param name="empresa">La empresa que va a recibir la calificación.</param>
@@ -200,6 +203,24 @@ namespace CookTime
             empresa.promedio_calificacion = float.Parse(final_response);
 
             label.Text = "Puntuación: " + final_response;
+        }
+
+        /// <summary>
+        /// Agrega a la empresa recibida a la lista de seguidos del usuario que está usando la aplicación y
+        /// envía la solicitud al servidor para actualizar el archivo JSON. Elimina la opción de seguir empresas
+        /// que ya están en la lista de seguidos.
+        /// </summary>
+        /// <param name="empresa">La empresa que será seguida.</param>
+        /// <param name="grid">El grid de la empresa a seguir.</param>
+        /// <param name="button">El botón para seguir a la empresa.</param>
+        /// <returns></returns>
+        public async Task seguir_empresa(Empresa empresa, Grid grid, Button button)
+        {
+            grid.Children.Remove(button);
+            usuario_actual.get_seguidos().Add(empresa.get_id() * -1);
+
+            var response = await client
+                .GetStringAsync("/rest/servicios/seguir_empresa?usuario=" + usuario_actual.get_id().ToString() + "&empresa_seguida=" + (empresa.get_id() * -1).ToString());
         }
     }
 }

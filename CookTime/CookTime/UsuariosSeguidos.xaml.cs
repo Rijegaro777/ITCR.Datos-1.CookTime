@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,8 +9,10 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UsuariosSeguidos : ContentPage
     {
+        Usuario usuario_actual;
         List<string> lista_nombres = new List<string>();
         List<Usuario> lista_usuarios = new List<Usuario>();
+        List<Empresa> lista_empresas = new List<Empresa>();
 
         /// <summary>
         /// Muestra una lista con todos los seguidos del usuario.
@@ -18,6 +21,7 @@ namespace CookTime
         public UsuariosSeguidos(Usuario usuario)
         {
             InitializeComponent();
+            usuario_actual = usuario;
             buscar_seguidos(usuario);
         }
 
@@ -29,12 +33,29 @@ namespace CookTime
         {
             for (int i = 0; i < usuario.get_seguidos().Count; i++)
             {
-                string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_usuario/" + usuario.get_seguidos()[i].ToString());
-                string final_response = response.ToString();
+                Debug.WriteLine(usuario.get_seguidos()[i]);
+                if (usuario.get_seguidos()[i] < 0)
+                {
+                    string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_empresa/" + (usuario.get_seguidos()[i] * -1).ToString());
+                    string final_response = response.ToString();
 
-                Usuario usuario_seguido = JsonConvert.DeserializeObject<Usuario>(final_response);
+                    Empresa empresa_seguida = JsonConvert.DeserializeObject<Empresa>(final_response);
 
-                lista_usuarios.Add(usuario_seguido);
+                    lista_empresas.Add(empresa_seguida);
+                }
+                else
+                {
+                    string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_usuario/" + usuario.get_seguidos()[i].ToString());
+                    string final_response = response.ToString();
+
+                    Usuario usuario_seguido = JsonConvert.DeserializeObject<Usuario>(final_response);
+
+                    lista_usuarios.Add(usuario_seguido);
+                }
+            }
+            for (int i = 0; i < lista_empresas.Count; i++)
+            {
+                lista_nombres.Add(lista_empresas[i].get_nombre());
             }
             for (int i = 0; i < lista_usuarios.Count; i++)
             {
@@ -54,14 +75,32 @@ namespace CookTime
             if (!lista_nombres.Contains("No se encontraron usuarios"))
             {
                 int pos = lista_nombres.IndexOf(lista_seguidos.SelectedItem.ToString());
-                
-                if(lista_usuarios[pos] != Cliente.get_instance().get_usuario())
+
+                if(lista_empresas.Count > 0)
                 {
-                    await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], true)));
+                    if (pos < lista_empresas.Count)
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new BoardEmpresa(lista_empresas[pos], usuario_actual)));
+                    }
+                    else if (lista_usuarios[pos - lista_empresas.Count] != Cliente.get_instance().get_usuario())
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos - lista_empresas.Count], true)));
+                    }
+                    else
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos - lista_empresas.Count], false)));
+                    }
                 }
                 else
                 {
-                    await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], false)));
+                    if (lista_usuarios[pos] != Cliente.get_instance().get_usuario())
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], true)));
+                    }
+                    else
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[pos], false)));
+                    }
                 }
             }
         }
