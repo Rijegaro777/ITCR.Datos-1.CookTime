@@ -105,7 +105,7 @@ namespace CookTime
             return empresas;
         }
 
-        public float get_promedio_calificación()
+        public float get_promedio_calificacion()
         {
             return promedio_calificacion;
         }

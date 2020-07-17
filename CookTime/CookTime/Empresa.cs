@@ -9,6 +9,8 @@ namespace CookTime
     {
         public String nombre, logo, contacto, horario, ubicacion;
         public int id;
+        public float promedio_calificacion;
+        public List<float> calificaciones;
 
         /// <summary>
         /// Clase que representa una empresa.
@@ -24,6 +26,8 @@ namespace CookTime
             this.horario = horario;
             this.ubicacion = ubicacion;
             this.id = Math.Abs(nombre.GetHashCode());
+            this.promedio_calificacion = 0;
+            this.calificaciones = new List<float>();
         }
 
         public String get_nombre()
@@ -54,6 +58,21 @@ namespace CookTime
         public int get_id()
         {
             return id;
+        }
+
+        public float get_promedio_calificacion()
+        {
+            return promedio_calificacion;
+        }
+
+        public void set_romedio_calificacion(float promedio_calificacion)
+        {
+            this.promedio_calificacion = promedio_calificacion;
+        }
+
+        public List<float> get_calificaciones()
+        {
+            return calificaciones;
         }
     }
 }

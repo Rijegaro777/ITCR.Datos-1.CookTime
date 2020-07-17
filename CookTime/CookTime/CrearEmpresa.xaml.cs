@@ -17,12 +17,12 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CrearEmpresa : ContentPage
     {
-        Usuario usuario = Cliente.get_instance().get_usuario();
-        Empresa empresa_actual;
-        MediaFile imagen_seleccionada;
-        double latitud = 0;
-        double longitud = 0;
-        Pin pin;
+        private Usuario usuario = Cliente.get_instance().get_usuario();
+        private Empresa empresa_actual;
+        private MediaFile imagen_seleccionada;
+        private double latitud = 0;
+        private double longitud = 0;
+        private Pin pin;
 
         public CrearEmpresa()
         {

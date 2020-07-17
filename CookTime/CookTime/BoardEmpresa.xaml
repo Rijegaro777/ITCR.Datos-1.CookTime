@@ -7,8 +7,11 @@
              x:Class="CookTime.BoardEmpresa">
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,0" HorizontalOptions="Fill" Spacing="15">
-            <Grid x:Name="grid_perfil">
+            <Grid x:Name="grid_empresa">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -44,7 +47,7 @@
                            HorizontalOptions="CenterAndExpand"/>
                 <Button x:Name="ver_ubicacion" 
                         Text="Ubicación" 
-                        Grid.Row="5" 
+                        Grid.Row="8" 
                         Grid.ColumnSpan="2"
                         Clicked="ver_ubicacion_Clicked"
                         HorizontalOptions="Fill"/>

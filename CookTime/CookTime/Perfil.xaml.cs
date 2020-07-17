@@ -34,7 +34,7 @@ namespace CookTime
             }
             if (dueno_perfil.is_chef)
             {
-                puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificación(),
+                puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificacion(),
                                                FontSize = 18,
                                                HorizontalTextAlignment = TextAlignment.Center,
                                                HorizontalOptions = LayoutOptions.Fill
@@ -60,8 +60,8 @@ namespace CookTime
                 calificaciones.Add(2);
                 calificaciones.Add(3);
                 calificaciones.Add(4);
-
                 calificaciones.Add(5);
+
                 Picker picker_puntuacion = new Picker();
                 picker_puntuacion.Title = "Puntuación";
                 picker_puntuacion.ItemsSource = calificaciones;
@@ -127,6 +127,7 @@ namespace CookTime
             BindingContext = this;
 
         }
+
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Recipes selectedItem = e.SelectedItem as Recipes;
