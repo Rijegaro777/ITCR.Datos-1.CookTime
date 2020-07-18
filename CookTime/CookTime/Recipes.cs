@@ -8,13 +8,27 @@ namespace CookTime
     {
         public string nombre { get; set; }
 
-        public string logo { get; set; }
+        public string tipo { get; set; }
 
-        public string contacto { get; set; }
+        public string porciones { get; set; }
 
-        public string horario { get; set; }
+        public string duracion { get; set; }
 
-        public string ubicacion { get; set; }
+        public string tiempo { get; set; }
+
+        public string dificultad { get; set; }
+
+        public string dieta { get; set; }
+
+        public string foto { get; set; }
+
+        public string ingredientes { get; set; }
+
+        public string pasos { get; set; }
+
+        public string precio { get; set; }
+
+        public string fecha { get; set; }
 
         public int id { get; set; }
 

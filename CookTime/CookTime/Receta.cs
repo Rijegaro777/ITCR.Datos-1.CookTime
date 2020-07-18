@@ -7,7 +7,7 @@ namespace CookTime
 {
     public class Receta
     {
-        public String nombre, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio;
+        public String nombre, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio, fecha;
         public int id;
 
         /// <summary>
@@ -29,6 +29,7 @@ namespace CookTime
             this.ingredientes = ingredientes;
             this.pasos = pasos;
             this.precio = precio;
+            this.fecha = "fecha";
             this.id = Math.Abs(nombre.GetHashCode());
         }
 
@@ -86,7 +87,10 @@ namespace CookTime
         {
             return precio;
         }
-
+        public String get_fecha()
+        {
+            return fecha;
+        }
         public int get_id()
         {
             return id;

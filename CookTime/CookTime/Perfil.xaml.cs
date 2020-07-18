@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
 
 namespace CookTime
 {
@@ -13,6 +14,7 @@ namespace CookTime
     [DesignTimeVisible(false)]
     public partial class Perfil : ContentPage
     {
+        List<Receta> recetas = new List<Receta>();
         private Usuario dueno;
         Label puntuacion;
         public IList listRecipes { get; private set; }
@@ -28,18 +30,18 @@ namespace CookTime
 
             dueno = dueno_perfil;
 
-            if(dueno_perfil.get_foto() != "vacio.jpg")
+            if (dueno_perfil.get_foto() != "vacio.jpg")
             {
                 foto_perfil.Source = dueno_perfil.get_foto();
             }
             if (dueno_perfil.is_chef)
             {
                 puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificacion(),
-                                               FontSize = 18,
-                                               HorizontalTextAlignment = TextAlignment.Center,
-                                               HorizontalOptions = LayoutOptions.Fill
-                                             };
-               
+                    FontSize = 18,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    HorizontalOptions = LayoutOptions.Fill
+                };
+
                 Grid.SetColumnSpan(puntuacion, 2);
                 Grid.SetRow(puntuacion, 3);
                 grid_perfil.Children.Add(puntuacion);
@@ -76,56 +78,40 @@ namespace CookTime
 
                 Grid.SetRow(boton_puntuar, 5);
                 Grid.SetColumn(boton_puntuar, 1);
-                
+
                 grid_perfil.Children.Add(picker_puntuacion);
                 grid_perfil.Children.Add(boton_puntuar);
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
 
+            dueno = dueno_perfil;
+            buscar_recetas(dueno_perfil);
+        }
+
+        public async void buscar_recetas(Usuario usuario) {
+            for (int i = 0; i < usuario.get_recetas().Count; i++)
+            {
+                string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_receta/" + usuario.get_recetas()[i].ToString());
+                string final_response = response.ToString();
+
+                Receta receta = JsonConvert.DeserializeObject<Receta>(final_response);
+
+                recetas.Add(receta);
+            }
+
             listRecipes = new List<Recipes>();
 
-            listRecipes.Add(new Recipes
+            for (int i = 0; i < recetas.Count; i++)
             {
-                nombre = "Lasagna",
-                logo = "Lasagna.jpg",
-                contacto = "Dificultad: " + "1",
-                horario = "06 de Julio"
-            });
-
-            listRecipes.Add(new Recipes
-            {
-                nombre = "Pasta",
-                logo = "Pasta.jpg",
-                contacto = "Dificultad: " + "2",
-                horario = "07 de Julio"
-            });
-
-            listRecipes.Add(new Recipes
-            {
-                nombre = "Ensalada",
-                logo = "Salad.jpg",
-                contacto = "Dificultad: " + "3",
-                horario = "06 de Julio"
-            });
-
-            listRecipes.Add(new Recipes
-            {
-                nombre = "Huevos con Tocino",
-                logo = "Huevo_y_tosino.jpg",
-                contacto = "Dificultad: " + "4",
-                horario = "07 de Julio"
-            });
-
-            listRecipes.Add(new Recipes
-            {
-                nombre = "Pasta",
-                logo = "Pasta.jpg",
-                contacto = "Dificultad: " + "5",
-                horario = "06 de Julio"
-            });
-
+                listRecipes.Add(new Recipes
+                {
+                    nombre = recetas[i].get_nombre(),
+                    foto = recetas[i].get_foto(),
+                    dificultad = recetas[i].get_dificultad(),
+                    fecha = recetas[i].get_fecha()
+                });
+            }
             BindingContext = this;
-
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

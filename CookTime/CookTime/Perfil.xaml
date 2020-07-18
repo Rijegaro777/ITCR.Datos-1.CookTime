@@ -63,7 +63,7 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <Image Source="{Binding logo}"
+                                                <Image Source="{Binding foto}"
                                                        Aspect="AspectFill"
                                                        HeightRequest="100"
                                                        WidthRequest="100"
@@ -74,12 +74,12 @@
                                                        VerticalOptions="Start"
                                                        HorizontalOptions="Center" />
                                                 <Label Grid.Column="1"
-                                                       Text="{Binding horario}"
+                                                       Text="{Binding dificultad}"
                                                        FontAttributes="Bold"
                                                        VerticalOptions="Center"
                                                        HorizontalOptions="Center" />
                                                 <Label Grid.Column="1"
-                                                       Text="{Binding contacto}"
+                                                       Text="{Binding fecha}"
                                                        VerticalOptions="End"
                                                        HorizontalOptions="Center"/>
                                             </Grid>
