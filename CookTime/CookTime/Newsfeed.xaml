@@ -28,17 +28,4 @@
 
         </StackLayout>-->
 
-    <StackLayout
-        Orientation="Horizontal"
-        VerticalOptions="End"
-        HorizontalOptions="Center">
-       <Image Source=""/>
-       <Button x:Name="News" />
-       <Button x:Name="Search"/>
-       <Button x:Name="Add"/>
-       <Button x:Name="Notifications"/>
-       <Button x:Name="My_Profile"/>
-
-    </StackLayout>
-
 </ContentPage>

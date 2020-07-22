@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
+using Syncfusion.DataSource.Extensions;
 
 namespace CookTime
 {
@@ -15,8 +16,9 @@ namespace CookTime
     public partial class Perfil : ContentPage
     {
         List<Receta> recetas = new List<Receta>();
-        private Usuario dueno;
+        Usuario dueno;
         Label puntuacion;
+        List<string> lista_nombres = new List<string>();
         public IList listRecipes { get; private set; }
 
         /// <summary>
@@ -84,7 +86,6 @@ namespace CookTime
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
 
-            dueno = dueno_perfil;
             buscar_recetas(dueno_perfil);
         }
 
@@ -110,18 +111,15 @@ namespace CookTime
                     dificultad = recetas[i].get_dificultad(),
                     fecha = recetas[i].get_fecha()
                 });
+                lista_nombres.Add(recetas[i].get_nombre());
             }
             BindingContext = this;
-        }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Recipes selectedItem = e.SelectedItem as Recipes;
         }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Recipes tappedItem = e.Item as Recipes;
+            int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
+            await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(recetas[pos])));
         }
 
         /// <summary>

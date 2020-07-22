@@ -20,7 +20,7 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.1.8:8080/";
+            this.uri = "http://192.168.1.10:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);

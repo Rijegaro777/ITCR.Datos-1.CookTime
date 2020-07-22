@@ -9,6 +9,7 @@ namespace CookTime
     {
         public String nombre, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio, fecha;
         public int id;
+        DateTime dia = DateTime.Today;
 
         /// <summary>
         /// Clase que representa una receta.
@@ -29,7 +30,7 @@ namespace CookTime
             this.ingredientes = ingredientes;
             this.pasos = pasos;
             this.precio = precio;
-            this.fecha = "fecha";
+            this.fecha = dia.ToShortDateString().ToString();
             this.id = Math.Abs(nombre.GetHashCode());
         }
 

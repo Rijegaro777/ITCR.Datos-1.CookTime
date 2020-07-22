@@ -48,16 +48,15 @@
                             Clicked="mostrar_seguidores"/>
                     <ScrollView Grid.Row="6" Grid.ColumnSpan="2">
                         <StackLayout Spacing="100">
-                            <ListView ItemsSource="{Binding listRecipes}"
+                            <ListView x:Name="lista_recetas" ItemsSource="{Binding listRecipes}"
                                 HasUnevenRows="True"
-                                ItemSelected="ListView_ItemSelected"
                                 ItemTapped="ListView_ItemTapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="120" />
+                                                    <RowDefinition Height="100" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
