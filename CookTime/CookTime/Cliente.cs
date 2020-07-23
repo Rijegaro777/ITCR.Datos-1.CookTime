@@ -20,7 +20,7 @@ namespace CookTime
         /// </summary>
         private Cliente()
         {
-            this.uri = "http://192.168.1.10:8080/";
+            this.uri = "http://192.168.1.6:8080/";
 
             this.client = new HttpClient();
             this.client.BaseAddress = new Uri(this.uri);
@@ -111,7 +111,7 @@ namespace CookTime
         /// Cambia la foto de perfil del usuario que está usando la aplicación.
         /// </summary>
         /// <param name="uri">La Uri donde está alojada la foto nueva.</param>
-        public async void cambiar_foto(Uri uri)
+        public async void cambiar_foto_usuario(Uri uri)
         {
             usuario_actual.foto = uri.ToString();
             string mensaje = uri.ToString() + "&" + usuario_actual.get_id().ToString();
@@ -221,6 +221,21 @@ namespace CookTime
 
             var response = await client
                 .GetStringAsync("/rest/servicios/seguir_empresa?usuario=" + usuario_actual.get_id().ToString() + "&empresa_seguida=" + (empresa.get_id() * -1).ToString());
+        }
+
+        /// <summary>
+        /// Cambia la foto de una receta.
+        /// </summary>
+        /// <param name="uri">La Uri donde está alojada la foto nueva.</param>
+        public async void cambiar_foto_receta(Uri uri, String id_receta)
+        {
+            string mensaje = uri.ToString() + "&" + id_receta;
+            var mensaje_http = new StringContent(mensaje, Encoding.UTF8, "text/plain");
+
+            var response = await client.PostAsync("rest/servicios/cambiar_foto_receta", mensaje_http);
+            response.EnsureSuccessStatusCode();
+
+            string final_respose = response.StatusCode.ToString();
         }
     }
 }

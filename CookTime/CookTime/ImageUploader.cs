@@ -81,11 +81,24 @@ namespace CookTime
             await blob.UploadFromStreamAsync(stream);
             if(contenedor == "photos")
             {
-                Cliente.get_instance().cambiar_foto(blob.Uri);
+                Cliente.get_instance().cambiar_foto_usuario(blob.Uri);
             }
             else if(contenedor.Split('&')[0] == "logos")
             {
                 Cliente.get_instance().cambiar_logo(blob.Uri, contenedor.Split('&')[1]);
+            }
+        }
+
+        public async void subir_foto_receta(Stream stream, string contenedor, Receta receta)
+        {
+            string nombre_archivo = new Random().Next(10000).ToString();
+            CloudBlockBlob blob = cliente_contenedor.GetBlockBlobReference(nombre_archivo);
+            await blob.UploadFromStreamAsync(stream);
+            receta.foto = blob.Uri.ToString();
+
+            if (contenedor.Split('&')[0] == "recipes")
+            {
+                Cliente.get_instance().cambiar_foto_receta(blob.Uri, contenedor.Split('&')[1]);
             }
         }
 

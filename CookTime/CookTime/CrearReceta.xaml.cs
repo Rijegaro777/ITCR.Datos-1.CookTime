@@ -38,7 +38,7 @@ namespace CookTime
             string pasos = entry_pasos.Text;
             string precio = entry_precio.Text;
 
-            Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, ingredientes, pasos, precio);
+            Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, "vacio",  ingredientes, pasos, precio);
             receta_actual = receta;
             usuario.get_recetas().Add(receta.get_id());
 
@@ -51,7 +51,7 @@ namespace CookTime
             string result = response.StatusCode.ToString();
 
             var stream_foto = imagen_seleccionada.GetStream();
-            ImageUploader.get_instance_logos().subir_imagen(stream_foto, "logos&" + receta_actual.get_id().ToString());
+            ImageUploader.get_instance_recipes().subir_foto_receta(stream_foto, "recipes&" + receta_actual.get_id().ToString(), receta_actual);
 
             await DisplayAlert("Exitoso", "Receta creada exitosamente", "Ok");
             await Application.Current.MainPage.Navigation.PopModalAsync();

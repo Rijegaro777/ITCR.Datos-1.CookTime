@@ -15,7 +15,7 @@ namespace CookTime
         /// Clase que representa una receta.
         /// </summary>
         /// <param name="nombre">El nombre de la receta.</param>
-        public Receta(String nombre, String tipo, String porciones, String duracion, String tiempo, String dificultad, String dieta, String ingredientes, String pasos, String precio)
+        public Receta(String nombre, String tipo, String porciones, String duracion, String tiempo, String dificultad, String dieta, String foto, String ingredientes, String pasos, String precio)
         {
             this.nombre = nombre;
             this.tipo = tipo;
@@ -24,7 +24,7 @@ namespace CookTime
             this.tiempo = tiempo;
             this.dificultad = dificultad;
             this.dieta = dieta;
-            this.foto = "Vacio.jpg";
+            this.foto = foto;
             this.ingredientes = ingredientes;
             this.pasos = pasos;
             this.precio = precio;

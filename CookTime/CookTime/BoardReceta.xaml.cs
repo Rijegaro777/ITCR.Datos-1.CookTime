@@ -32,25 +32,21 @@ namespace CookTime
                 nombre = receta.get_nombre(),
                 fecha = receta.get_fecha(),
                 precio = receta.get_precio(),
-
                 tipo = receta.get_tipo(),
                 dieta = receta.get_dieta(),
+                foto = receta.get_foto(),
                 tiempo = receta.get_tiempo(),
                 duracion = receta.get_duracion(),
                 dificultad = receta.get_dificultad(),
                 porciones = receta.get_porciones(),
                 ingredientes = receta.get_ingredientes(),
                 pasos = receta.get_pasos()
-            });
+            }); 
 
             BindingContext = this;
 
             receta_actual = receta;
-
-            if (receta_actual.get_foto() != "Lasagna.jpg")
-            {
-                foto_receta.Source = receta_actual.get_foto();
-            }
+            foto_receta.Source = receta_actual.get_foto();
         }
     }
 }
