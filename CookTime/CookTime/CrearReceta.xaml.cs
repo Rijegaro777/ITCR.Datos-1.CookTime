@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,9 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CrearReceta : ContentPage
     {
-        Usuario usuario = Cliente.get_instance().get_usuario();
+        private Usuario usuario = Cliente.get_instance().get_usuario();
+        private MediaFile imagen_seleccionada;
+        private Receta receta_actual;
 
         public CrearReceta()
         {
@@ -30,12 +34,12 @@ namespace CookTime
             string tiempo = entry_tiempo.Text;
             string dificultad = entry_dificultad.Text;
             string dieta = entry_dieta.Text;
-            string foto = entry_foto.Text + ".jpg";
             string ingredientes = entry_ingredientes.Text;
             string pasos = entry_pasos.Text;
             string precio = entry_precio.Text;
 
-            Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio);
+            Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, ingredientes, pasos, precio);
+            receta_actual = receta;
             usuario.get_recetas().Add(receta.get_id());
 
             string receta_json = JsonConvert.SerializeObject(receta) + "%" + usuario.get_id();
@@ -46,8 +50,33 @@ namespace CookTime
 
             string result = response.StatusCode.ToString();
 
+            var stream_foto = imagen_seleccionada.GetStream();
+            ImageUploader.get_instance_logos().subir_imagen(stream_foto, "logos&" + receta_actual.get_id().ToString());
+
             await DisplayAlert("Exitoso", "Receta creada exitosamente", "Ok");
             await Application.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+        private async void subir_foto(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Error", "Archivo no soportado", "Ok");
+                return;
+            }
+            var media_options = new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Medium
+            };
+
+            imagen_seleccionada = await CrossMedia.Current.PickPhotoAsync(media_options);
+
+            if (imagen_seleccionada == null)
+            {
+                await DisplayAlert("Error", "Seleccione una imagen", "Ok");
+                return;
+            }
         }
     }
 }

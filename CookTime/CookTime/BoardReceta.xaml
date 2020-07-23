@@ -9,160 +9,169 @@
         <ToolbarItem Text="Compartir" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="100" Padding="10">
-                <ListView ItemsSource="{Binding listRecipes}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2"
-                                       Source="Lasagna.jpg"
-                                       Aspect="AspectFill"
-                                       HeightRequest="100"
-                                       WidthRequest="100"
-                                       VerticalOptions="Center" />
-                                    <Label Grid.Column="1"
-                                       Grid.ColumnSpan="2"
-                                       Text="{Binding nombre}"
-                                       FontAttributes="Bold"
-                                       FontSize="25"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Column="1"
-                                       Grid.ColumnSpan="2"
-                                       Text="{Binding fecha}"
-                                       VerticalOptions="End"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       Text="Precio:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       Text="{Binding precio}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                       Grid.Column="2"
-                                       Text="Valoracion:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                       Grid.Column="2"
-                                       Text="Entry_valoracion"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="0"
-                                       Text="Tipo:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="0"
-                                       Text="{Binding tipo}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="1"
-                                       Text="Dieta:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="1"
-                                       Text="{Binding dieta}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="2"
-                                       Text="Tiempo:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="2"
-                                       Grid.Column="2"
-                                       Text="{Binding  tiempo}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="0"
-                                       Text="Duracion:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="0"
-                                       Text="{Binding duracion}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="1"
-                                       Text="Dificultad:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="1"
-                                       Text="{Binding dificultad}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="2"
-                                       Text="Porciones:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="3"
-                                       Grid.Column="2"
-                                       Text="{Binding porciones}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Label Grid.Row="4"
-                                       Text="Ingredientes:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Start" />
-                                    <Label Grid.Row="5"
-                                       Grid.ColumnSpan="3"
-                                       Text="{Binding ingredientes}"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Start" />
-                                    <Label Grid.Row="6"
-                                       Text="Pasos:"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="End"
-                                       HorizontalOptions="Start" />
-                                    <Label Grid.Row="7"
-                                       Grid.ColumnSpan="3"
-                                       Text="{Binding pasos}"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="Start" />
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ContentView HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image x:Name="foto_receta" Aspect="AspectFit"
+                           Source="https://www.ver.bo/wp-content/uploads/2019/01/4b463f287cd814216b7e7b2e52e82687.png_1805022883.png"/>
+                </ContentView>
+                <ScrollView Grid.Row="1">
+                    <StackLayout Spacing="100" Padding="10">
+                        <ListView ItemsSource="{Binding listRecipes}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.ColumnSpan="3"
+                                                   Text="{Binding nombre}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="25"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Text="Creado:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Text="{Binding fecha}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Text="Precio:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Text="{Binding precio}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="2"
+                                                   Text="Valoracion:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="2"
+                                                   Text="Entry_valoracion"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="Tipo:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="{Binding tipo}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Text="Dieta:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Text="{Binding dieta}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="2"
+                                                   Text="Tiempo:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="2"
+                                                   Text="{Binding  tiempo}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   Text="Duracion:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   Text="{Binding duracion}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="1"
+                                                   Text="Dificultad:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="1"
+                                                   Text="{Binding dificultad}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="2"
+                                                   Text="Porciones:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="2"
+                                                   Text="{Binding porciones}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="4"
+                                                   Text="Ingredientes:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start" />
+                                            <Label Grid.Row="5"
+                                                   Grid.ColumnSpan="3"
+                                                   Text="{Binding ingredientes}"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start" />
+                                            <Label Grid.Row="6"
+                                                   Text="Pasos:"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="End"
+                                                   HorizontalOptions="Start" />
+                                            <Label Grid.Row="7"
+                                                   Grid.ColumnSpan="3"
+                                                   Text="{Binding pasos}"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

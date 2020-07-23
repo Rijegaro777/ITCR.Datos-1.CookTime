@@ -108,7 +108,7 @@ namespace CookTime
                 {
                     nombre = recetas[i].get_nombre(),
                     foto = recetas[i].get_foto(),
-                    dificultad = recetas[i].get_dificultad(),
+                    dificultad = "Dificultad: " + recetas[i].get_dificultad(),
                     fecha = recetas[i].get_fecha()
                 });
                 lista_nombres.Add(recetas[i].get_nombre());

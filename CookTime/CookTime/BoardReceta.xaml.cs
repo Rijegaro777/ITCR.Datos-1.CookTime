@@ -14,6 +14,7 @@ namespace CookTime
     public partial class BoardReceta : ContentPage
     {
         public IList listRecipes { get; private set; }
+        Receta receta_actual;
 
         /// <summary>
         /// Muestra el board de una empresa.
@@ -43,6 +44,13 @@ namespace CookTime
             });
 
             BindingContext = this;
+
+            receta_actual = receta;
+
+            if (receta_actual.get_foto() != "Lasagna.jpg")
+            {
+                foto_receta.Source = receta_actual.get_foto();
+            }
         }
     }
 }
