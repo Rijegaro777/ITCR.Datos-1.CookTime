@@ -18,6 +18,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -51,6 +52,48 @@
                         Grid.ColumnSpan="2"
                         Clicked="ver_ubicacion_Clicked"
                         HorizontalOptions="Fill"/>
+                <ScrollView Grid.Row="9" Grid.ColumnSpan="2">
+                    <StackLayout Spacing="100">
+                        <ListView x:Name="lista_recetas" ItemsSource="{Binding listRecipes}"
+                                HasUnevenRows="True"
+                                ItemTapped="ListView_ItemTapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding foto}"
+                                                       Aspect="AspectFill"
+                                                       HeightRequest="100"
+                                                       WidthRequest="100"
+                                                       VerticalOptions="Center" />
+                                            <Label Grid.Column="1"
+                                                       Text="{Binding nombre}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Start"
+                                                       HorizontalOptions="Center" />
+                                            <Label Grid.Column="1"
+                                                       Text="{Binding dificultad}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center" />
+                                            <Label Grid.Column="1"
+                                                       Text="{Binding fecha}"
+                                                       VerticalOptions="End"
+                                                       HorizontalOptions="Center"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

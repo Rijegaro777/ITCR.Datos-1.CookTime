@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -9,8 +11,12 @@ namespace CookTime
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BoardEmpresa : ContentPage
     {
+        List<Receta> recetas = new List<Receta>();
+        public IList listRecipes { get; private set; }
+        List<string> lista_nombres = new List<string>();
         Empresa empresa_actual;
         Label puntuacion;
+
         /// <summary>
         /// Muestra el board de una empresa.
         /// </summary>
@@ -75,7 +81,7 @@ namespace CookTime
             {
                 Button crear_receta = new Button();
                 crear_receta.Text = "Añadir receta";
-                //seguir.Clicked += async (sender, args) => await Cliente.get_instance().seguir_usuario(dueno_perfil, grid_perfil, seguir);
+                crear_receta.Clicked += async (sender, args) => await Navigation.PushModalAsync(new CrearReceta(empresa_actual));
                 Grid.SetColumnSpan(crear_receta, 2);
                 Grid.SetRow(crear_receta, 7);
 
@@ -84,6 +90,42 @@ namespace CookTime
             nombre.Text = empresa.get_nombre();
             horario.Text = "Horario de atención: " + empresa.get_horario();
             contacto.Text = "Método de contacto: " +empresa.get_contacto();
+
+            buscar_recetas(empresa_actual);
+        }
+
+        public async void buscar_recetas(Empresa empresa)
+        {
+            for (int i = 0; i < empresa.get_recetas().Count; i++)
+            {
+                string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_receta/" + empresa.get_recetas()[i].ToString());
+                string final_response = response.ToString();
+
+                Receta receta = JsonConvert.DeserializeObject<Receta>(final_response);
+
+                recetas.Add(receta);
+            }
+
+            listRecipes = new List<Recipes>();
+
+            for (int i = 0; i < recetas.Count; i++)
+            {
+                listRecipes.Add(new Recipes
+                {
+                    nombre = recetas[i].get_nombre(),
+                    foto = recetas[i].get_foto(),
+                    dificultad = "Dificultad: " + recetas[i].get_dificultad(),
+                    fecha = recetas[i].get_fecha()
+                });
+                lista_nombres.Add(recetas[i].get_nombre());
+            }
+            BindingContext = this;
+
+        }
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
+            await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(recetas[pos])));
         }
 
         /// <summary>

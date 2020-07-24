@@ -19,10 +19,17 @@ namespace CookTime
         private Usuario usuario = Cliente.get_instance().get_usuario();
         private MediaFile imagen_seleccionada;
         private Receta receta_actual;
+        private Empresa empresa_actual = null;
 
         public CrearReceta()
         {
             InitializeComponent();
+        }
+
+        public CrearReceta(Empresa empresa)
+        {
+            InitializeComponent();
+            empresa_actual = empresa;
         }
 
         private async void boton_crear_receta_Clicked(object sender, EventArgs e)
@@ -40,21 +47,45 @@ namespace CookTime
 
             Receta receta = new Receta(nombre_receta, tipo, porciones, duracion, tiempo, dificultad, dieta, "vacio",  ingredientes, pasos, precio);
             receta_actual = receta;
-            usuario.get_recetas().Add(receta.get_id());
 
-            string receta_json = JsonConvert.SerializeObject(receta) + "%" + usuario.get_id();
-            var userData = new StringContent(receta_json, Encoding.UTF8, "text/plain");
-
-            var response = await Cliente.get_instance().get_client().PostAsync("rest/servicios/crear_receta", userData);
-            response.EnsureSuccessStatusCode();
-
-            string result = response.StatusCode.ToString();
+            if(empresa_actual == null)
+            {
+                usuario.get_recetas().Add(receta.get_id());
+                crear_receta_usuario();
+            }
+            else
+            {
+                empresa_actual.get_recetas().Add(receta.get_id());
+                crear_receta_empresa();
+            }
 
             var stream_foto = imagen_seleccionada.GetStream();
             ImageUploader.get_instance_recipes().subir_foto_receta(stream_foto, "recipes&" + receta_actual.get_id().ToString(), receta_actual);
 
             await DisplayAlert("Exitoso", "Receta creada exitosamente", "Ok");
             await Application.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+        private async void crear_receta_usuario()
+        {
+            string receta_json = JsonConvert.SerializeObject(receta_actual) + "%" + usuario.get_id();
+            var userData = new StringContent(receta_json, Encoding.UTF8, "text/plain");
+
+            var response = await Cliente.get_instance().get_client().PostAsync("rest/servicios/crear_receta", userData);
+            response.EnsureSuccessStatusCode();
+
+            string result = response.StatusCode.ToString();
+        }
+
+        private async void crear_receta_empresa()
+        {
+            string receta_json = JsonConvert.SerializeObject(receta_actual) + "%" + empresa_actual.get_id();
+            var userData = new StringContent(receta_json, Encoding.UTF8, "text/plain");
+
+            var response = await Cliente.get_instance().get_client().PostAsync("rest/servicios/crear_receta_empresa", userData);
+            response.EnsureSuccessStatusCode();
+
+            string result = response.StatusCode.ToString();
         }
 
         private async void subir_foto(object sender, EventArgs e)
