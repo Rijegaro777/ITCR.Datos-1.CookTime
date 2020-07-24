@@ -237,5 +237,28 @@ namespace CookTime
 
             string final_respose = response.StatusCode.ToString();
         }
+
+        /// <summary>
+        /// Puntúa a la empresa recibida y elimina las opciones para puntuarlo de su board. Envía la solicitud al servidor para actualizar el archivo JSON
+        /// </summary>
+        /// <param name="receta">La empresa que va a recibir la calificación.</param>
+        /// <param name="puntuacion">La puntuación recibida por la empresa.</param>
+        /// <param name="grid">El grid del board de la empresa que será puntuada.</param>
+        /// <param name="picker">El objeto que permite seleccionar la calificación.</param>
+        /// <param name="boton">El botón para puntuar a la empresa.</param>
+        /// <param name="label">El label que muestra el promedio de puntuaciones de la empresa.</param>
+        /// <returns></returns>
+        public async Task puntuar_receta(Receta receta, string puntuacion, Grid grid, Picker picker, Button boton, Label label)
+        {
+            grid.Children.Remove(picker);
+            grid.Children.Remove(boton);
+
+            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/puntuar_receta/" + receta.get_id().ToString() + "%" + puntuacion);
+            string final_response = response.ToString();
+
+            receta.promedio_calificaciones = float.Parse(final_response);
+
+            label.Text = "Puntuación: " + final_response;
+        }
     }
 }

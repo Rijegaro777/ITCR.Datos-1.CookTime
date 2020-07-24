@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Storage.Blob.Protocol;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -10,6 +11,8 @@ namespace CookTime
         public String nombre, tipo, porciones, duracion, tiempo, dificultad, dieta, foto, ingredientes, pasos, precio, fecha;
         public int id;
         DateTime dia = DateTime.Today;
+        public List<float> calificaciones;
+        public float promedio_calificaciones;
 
         /// <summary>
         /// Clase que representa una receta.
@@ -30,6 +33,8 @@ namespace CookTime
             this.precio = precio;
             this.fecha = dia.ToShortDateString().ToString();
             this.id = Math.Abs(nombre.GetHashCode());
+            this.calificaciones = new List<float>();
+            this.promedio_calificaciones = 0;
         }
 
         public String get_nombre()
@@ -93,6 +98,16 @@ namespace CookTime
         public int get_id()
         {
             return id;
+        }
+
+        public List<float> get_calificaciones()
+        {
+            return calificaciones;
+        }
+
+        public float get_promedio_calificaciones()
+        {
+            return promedio_calificaciones;
         }
     }
 }
