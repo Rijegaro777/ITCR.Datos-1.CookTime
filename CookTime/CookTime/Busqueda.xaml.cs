@@ -11,6 +11,7 @@ namespace CookTime
     {
         private List<Usuario> sugerencias_usuarios;
         private List<Empresa> sugerencias_empresas;
+        private List<Receta> sugerencias_recetas;
         private List<string> nombres_sugerencias;
 
         public Busqueda()
@@ -60,9 +61,37 @@ namespace CookTime
             throw new NotImplementedException();
         }
 
-        private void buscar_recetas(string busqueda)
+        private async void buscar_recetas(string busqueda)
         {
-            throw new NotImplementedException();
+            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_receta?busqueda=" + busqueda);
+
+            string final_response = response.ToString();
+
+            sugerencias_recetas = JsonConvert.DeserializeObject<List<Receta>>(final_response);
+            nombres_sugerencias = new List<string>();
+
+            try
+            {
+                if (sugerencias_recetas.Count == 0)
+                {
+                    nombres_sugerencias.Add("No se encontraron recetas");
+                }
+                else
+                {
+                    int i = 0;
+                    while (i < sugerencias_recetas.Count)
+                    {
+                        nombres_sugerencias.Add(sugerencias_recetas[i].get_nombre());
+                        i++;
+                    }
+                }
+            }
+            catch
+            {
+                nombres_sugerencias.Add("No se encontraron recetas");
+            }
+
+            lista_busqueda.ItemsSource = nombres_sugerencias;
         }
 
         /// <summary>
@@ -160,7 +189,7 @@ namespace CookTime
                 }
                 else if (elegir_busqueda.SelectedItem.ToString() == "Recetas")
                 {
-                    await DisplayAlert("Error", "No implementado", "ok");
+                    await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(sugerencias_recetas[pos])));
                 }
             }
         }
