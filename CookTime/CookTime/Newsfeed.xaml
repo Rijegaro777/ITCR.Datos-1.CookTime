@@ -16,31 +16,58 @@
                         <ViewCell>
                             <Grid Padding="5">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="100" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding foto}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="100"
-                                                       WidthRequest="100"
-                                                       VerticalOptions="Center" />
-                                <Label Grid.Column="1"
-                                                       Text="{Binding nombre}"
-                                                       FontAttributes="Bold"
-                                                       VerticalOptions="Start"
-                                                       HorizontalOptions="Center" />
-                                <Label Grid.Column="1"
-                                                       Text="{Binding dificultad}"
-                                                       FontAttributes="Bold"
-                                                       VerticalOptions="Center"
-                                                       HorizontalOptions="Center" />
-                                <Label Grid.Column="1"
-                                                       Text="{Binding fecha}"
-                                                       VerticalOptions="End"
-                                                       HorizontalOptions="Center"/>
+                                <Image Grid.Column="0"
+                                       Source="{Binding dieta}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="40"
+                                       WidthRequest="40"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label x:Name="user"
+                                       Text="{Binding tipo}"
+                                       Grid.Column="1"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="user"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Image Grid.Row="1"
+                                       Grid.ColumnSpan="3"
+                                       Source="{Binding foto}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="300"
+                                       WidthRequest="300"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="2"
+                                       Text="{Binding nombre}"
+                                       FontAttributes="Bold"
+                                       FontSize="17"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Center"/>
+                                <Label x:Name="compartir"
+                                       Text="Compartir"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="3"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="compartir"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
