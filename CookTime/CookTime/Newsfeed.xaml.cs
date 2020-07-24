@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using System.Collections;
+using System.Net.Http;
 
 namespace CookTime
 {
@@ -21,6 +22,7 @@ namespace CookTime
         List<Empresa> lista_empresas = new List<Empresa>();
         List<Receta> recetas = new List<Receta>();
         int a = 0, u = 0;
+        private Usuario usuario_actual;
         public IList listRecipes { get; private set; }
 
         /// <summary>
@@ -30,6 +32,7 @@ namespace CookTime
         public Newsfeed(Usuario usuario_seguido)
         {
             InitializeComponent();
+            usuario_actual = usuario_seguido;
             buscar_recetas_seguidos(usuario_seguido);
         }
 
@@ -102,7 +105,10 @@ namespace CookTime
 
         private async void compartir(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Registro());
+            int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
+            usuario_actual.get_recetas().Add(recetas[pos].get_id());
+
+            await DisplayAlert("Exitoso", "Receta compartida", "Ok");
         }
         private async void user(object sender, EventArgs e)
         {
