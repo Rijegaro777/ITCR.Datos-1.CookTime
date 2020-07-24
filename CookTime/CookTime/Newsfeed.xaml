@@ -6,26 +6,46 @@
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="CookTime.Newsfeed">
-        <!--<StackLayout>
-
-            <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="AUTO"/>
-                <RowDefinition Height="AUTO"/>
-                <RowDefinition Height="AUTO"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="AUTO"/>
-
-            </Grid.RowDefinitions>
-        <BoxView BackgroundColor="#FFFFFF" Grid.Row="0"/>
-
-        <BoxView BackgroundColor="#EBEBEB" Grid.Row="3"/>
-
-        <BoxView BackgroundColor="#C7C7C7" Grid.Row="4"/>
-
-
-            </Grid>
-
-        </StackLayout>-->
-
+    <ScrollView>
+        <StackLayout Spacing="100">
+            <ListView x:Name="lista_recetas" ItemsSource="{Binding listRecipes}"
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding foto}"
+                                                       Aspect="AspectFill"
+                                                       HeightRequest="100"
+                                                       WidthRequest="100"
+                                                       VerticalOptions="Center" />
+                                <Label Grid.Column="1"
+                                                       Text="{Binding nombre}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Start"
+                                                       HorizontalOptions="Center" />
+                                <Label Grid.Column="1"
+                                                       Text="{Binding dificultad}"
+                                                       FontAttributes="Bold"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center" />
+                                <Label Grid.Column="1"
+                                                       Text="{Binding fecha}"
+                                                       VerticalOptions="End"
+                                                       HorizontalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
