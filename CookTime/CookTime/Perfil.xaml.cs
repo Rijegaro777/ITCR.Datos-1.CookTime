@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Syncfusion.DataSource.Extensions;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace CookTime
 {
@@ -86,7 +88,54 @@ namespace CookTime
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
 
+            List<string> metodos = new List<string>();
+            metodos.Add("Por fecha");
+            metodos.Add("Por puntuación");
+            metodos.Add("Por dificultad");
+
+            Picker picker_metodo = new Picker();
+            picker_metodo.Title = "Ordenar";
+            picker_metodo.ItemsSource = metodos;
+
+            Button boton_ordenar = new Button();
+            boton_ordenar.Text = "Ordenar";
+            boton_ordenar.Clicked += async (sender, args) => await ordenar_recetas(picker_metodo.SelectedIndex.ToString());
+
+            Grid.SetRow(picker_metodo, 6);
+            Grid.SetColumn(picker_metodo, 0);
+
+            Grid.SetRow(boton_ordenar, 6);
+            Grid.SetColumn(boton_ordenar, 1);
+
+            grid_perfil.Children.Add(picker_metodo);
+            grid_perfil.Children.Add(boton_ordenar);
+
             buscar_recetas(dueno_perfil);
+        }
+
+        public async Task ordenar_recetas(string metodo)
+        {
+            List<Receta> lista_ordenada;
+            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/ordenar_recetas/" + dueno.get_id() + "%" + metodo);
+            string final_response = response.ToString();
+
+            lista_ordenada = JsonConvert.DeserializeObject<List<Receta>>(final_response);
+
+            listRecipes = new List<Recipes>();
+
+            for (int i = 0; i < recetas.Count; i++)
+            {
+                listRecipes.Add(new Recipes
+                {
+                    nombre = lista_ordenada[i].get_nombre(),
+                    foto = lista_ordenada[i].get_foto(),
+                    dificultad = "Dificultad: " + lista_ordenada[i].get_dificultad(),
+                    fecha = lista_ordenada[i].get_fecha()
+                });
+            }
+            BindingContext = this;
+
+            lista_recetas.ItemsSource = listRecipes;
         }
 
         public async void buscar_recetas(Usuario usuario) {
