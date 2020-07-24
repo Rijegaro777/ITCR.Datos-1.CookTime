@@ -82,6 +82,17 @@
                                                        Text="{Binding fecha}"
                                                        VerticalOptions="End"
                                                        HorizontalOptions="Center"/>
+                                                <Button Text="C"
+                                                        FontSize="10"
+                                                        TextColor="White"
+                                                        Grid.Column="1"
+                                                        VerticalOptions="End"
+                                                        HorizontalOptions="End"
+                                                        CornerRadius="15"
+                                                        HeightRequest="31"
+                                                        WidthRequest="30"
+                                                        BackgroundColor="DeepSkyBlue"
+                                                        Clicked="comentarios"/>
                                             </Grid>
                                         </ViewCell>
                                     </DataTemplate>

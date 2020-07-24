@@ -16,12 +16,13 @@
                         <ViewCell>
                             <Grid Padding="5">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50"/>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0"
@@ -31,13 +32,14 @@
                                        WidthRequest="40"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"/>
-                                <Label x:Name="user"
+                                <Label x:Name="User"
                                        Text="{Binding tipo}"
                                        Grid.Column="1"
+                                       Grid.ColumnSpan="2"
                                        FontAttributes="Bold"
                                        FontSize="18"
                                        VerticalOptions="Center"
-                                       HorizontalOptions="Center">
+                                       HorizontalOptions="Start">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="user"/>
                                     </Label.GestureRecognizers>
@@ -56,6 +58,18 @@
                                        FontSize="17"
                                        VerticalOptions="Start"
                                        HorizontalOptions="Center"/>
+                                <Label x:Name="Comentariosr"
+                                       Text="Comentarios"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="3"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="comentarios"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                                 <Label x:Name="compartir"
                                        Text="Compartir"
                                        Grid.Row="2"

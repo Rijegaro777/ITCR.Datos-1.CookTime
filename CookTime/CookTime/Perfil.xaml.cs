@@ -6,8 +6,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Syncfusion.DataSource.Extensions;
-using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace CookTime
 {
@@ -28,7 +26,7 @@ namespace CookTime
         /// </summary>
         /// <param name="dueno_perfil">El usuario al que le pertenece el perfil.</param>
         /// <param name="es_ajeno">Indica si el perfil le pertenece al usuario que está utilizando la app.</param>
-        public  Perfil(Usuario dueno_perfil, bool es_ajeno)
+        public Perfil(Usuario dueno_perfil, bool es_ajeno)
         {
             InitializeComponent();
 
@@ -40,7 +38,9 @@ namespace CookTime
             }
             if (dueno_perfil.is_chef)
             {
-                puntuacion = new Label { Text = "Puntuación: " + dueno.get_promedio_calificacion(),
+                puntuacion = new Label
+                {
+                    Text = "Puntuación: " + dueno.get_promedio_calificacion(),
                     FontSize = 18,
                     HorizontalTextAlignment = TextAlignment.Center,
                     HorizontalOptions = LayoutOptions.Fill
@@ -88,58 +88,11 @@ namespace CookTime
             }
             nombre.Text = dueno_perfil.get_nombre() + " " + dueno_perfil.get_apellido();
 
-            List<string> metodos = new List<string>();
-            metodos.Add("Por fecha");
-            metodos.Add("Por puntuación");
-            metodos.Add("Por dificultad");
-
-            Picker picker_metodo = new Picker();
-            picker_metodo.Title = "Ordenar";
-            picker_metodo.ItemsSource = metodos;
-
-            Button boton_ordenar = new Button();
-            boton_ordenar.Text = "Ordenar";
-            boton_ordenar.Clicked += async (sender, args) => await ordenar_recetas(picker_metodo.SelectedIndex.ToString());
-
-            Grid.SetRow(picker_metodo, 6);
-            Grid.SetColumn(picker_metodo, 0);
-
-            Grid.SetRow(boton_ordenar, 6);
-            Grid.SetColumn(boton_ordenar, 1);
-
-            grid_perfil.Children.Add(picker_metodo);
-            grid_perfil.Children.Add(boton_ordenar);
-
             buscar_recetas(dueno_perfil);
-            ordenar_recetas("-1");
         }
 
-        public async Task ordenar_recetas(string metodo)
+        public async void buscar_recetas(Usuario usuario)
         {
-            List<Receta> lista_ordenada;
-            string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/ordenar_recetas/" + dueno.get_id() + "%" + metodo);
-            string final_response = response.ToString();
-
-            lista_ordenada = JsonConvert.DeserializeObject<List<Receta>>(final_response);
-
-            listRecipes = new List<Recipes>();
-
-            for (int i = 0; i < lista_ordenada.Count; i++)
-            {
-                listRecipes.Add(new Recipes
-                {
-                    nombre = lista_ordenada[i].get_nombre(),
-                    foto = lista_ordenada[i].get_foto(),
-                    dificultad = "Dificultad: " + lista_ordenada[i].get_dificultad(),
-                    fecha = lista_ordenada[i].get_fecha()
-                });
-            }
-            BindingContext = this;
-
-            lista_recetas.ItemsSource = listRecipes;
-        }
-
-        public async void buscar_recetas(Usuario usuario) {
             for (int i = 0; i < usuario.get_recetas().Count; i++)
             {
                 string response = await Cliente.get_instance().get_client().GetStringAsync("rest/servicios/buscar_receta/" + usuario.get_recetas()[i].ToString());
@@ -190,6 +143,16 @@ namespace CookTime
         private async void mostrar_seguidores(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new UsuariosSeguidores(dueno));
+        }
+
+        /// <summary>
+        /// Muestra la lista de comentarios de la receta.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void comentarios(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new Comentarios()));
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CookTime
         List<Usuario> lista_usuarios = new List<Usuario>();
         List<Empresa> lista_empresas = new List<Empresa>();
         List<Receta> recetas = new List<Receta>();
-        int a = 0, u = 0;
+        int a = 0;
         private Usuario usuario_actual;
         public IList listRecipes { get; private set; }
 
@@ -37,7 +37,7 @@ namespace CookTime
         }
 
         /// <summary>
-        /// /// Solicita los datos de los seguidos al server y los muestra.
+        /// /// Solicita los datos de los seguidos al server y muestra las recetas de cada uno.
         /// </summary>
         /// <param name="usuario">El usuario cuyos seguidores se desean consultar</param>
         private async void buscar_recetas_seguidos(Usuario usuario)
@@ -82,7 +82,7 @@ namespace CookTime
                     listRecipes.Add(new Recipes
                     {
                         dieta = lista_usuarios[i].get_foto(),
-                        tipo = lista_usuarios[i].get_nombre() + lista_usuarios[i].get_apellido(),
+                        tipo = lista_usuarios[i].get_nombre() + " " + lista_usuarios[i].get_apellido(),
                         nombre = recetas[a].get_nombre(),
                         foto = recetas[a].get_foto(),
                         fecha = recetas[a].get_fecha()
@@ -91,18 +91,27 @@ namespace CookTime
 
                     a++;
                 }
-                u++;
                 list_users.Add(lista_usuarios[i].get_nombre());
             }
             BindingContext = this;
         }
 
+        /// <summary>
+        /// Muestra el board de la receta.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
             await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(recetas[pos])));
         }
 
+        /// <summary>
+        /// Comparte la receta seleccionada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void compartir(object sender, EventArgs e)
         {
             int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
@@ -110,10 +119,35 @@ namespace CookTime
 
             await DisplayAlert("Exitoso", "Receta compartida", "Ok");
         }
+
+        /// <summary>
+        /// Muestra el perfil del creador de la receta seleccionada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void user(object sender, EventArgs e)
         {
-            int pos = list_users.IndexOf(lista_recetas.SelectedItem.ToString());
-            await Navigation.PushAsync(new NavigationPage(new Perfil(lista_usuarios[pos], false)));
+            int ind = 0;
+            for (int i = 0; i < lista_usuarios.Count; i++)
+            {
+                for (int j = 0; j < lista_usuarios[i].get_recetas().Count; j++)
+                {
+                    if (ind == lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString()))
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[i], false)));
+                    }
+                    ind++;
+                }
+            }
+        }
+        /// <summary>
+        /// Muestra los comentarios de la receta.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void comentarios(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new Comentarios()));
         }
     }
 }

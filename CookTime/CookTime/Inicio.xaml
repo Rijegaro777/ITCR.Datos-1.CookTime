@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="CookTime.Inicio">
     <ContentPage.Content>
-        <Grid BackgroundColor="HotPink" VerticalOptions="CenterAndExpand" >
+        <Grid VerticalOptions="CenterAndExpand" >
             <Grid>
                 <Grid.RowDefinitions >
                     <RowDefinition Height="Auto"/>
@@ -17,7 +17,7 @@
                 <StackLayout Grid.Row="1" Padding="30, 20">
                     <Entry x:Name="entry_email" Placeholder="Correo electrónico" PlaceholderColor="White"/>
                     <Entry x:Name="entry_contrasena" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Text="Iniciar Sesión" BackgroundColor="AliceBlue" BorderColor="Black" TextColor="LightBlue" Clicked="login"/>
+                    <Button Text="Iniciar Sesión" TextColor="White" BackgroundColor="DeepSkyBlue" BorderColor="Black" Clicked="login"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="¿No tienes cuenta?" FontSize="Micro"/>
 
