@@ -30,6 +30,8 @@ namespace CookTime
 
         public string fecha { get; set; }
 
+        public string valoracion { get; set; }
+
         public int id { get; set; }
 
         public override string ToString()

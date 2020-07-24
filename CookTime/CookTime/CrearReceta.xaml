@@ -38,7 +38,7 @@
                 <Button x:Name="boton_crear_receta"
                         Text="Crear receta"
                         TextColor="White"
-                        BackgroundColor="LightBlue"
+                        BackgroundColor="DeepSkyBlue"
                         Clicked="boton_crear_receta_Clicked"/>
             </StackLayout>
         </ScrollView>

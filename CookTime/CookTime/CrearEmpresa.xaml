@@ -42,7 +42,12 @@
                 </x:Arguments>
             </map:Map>
 
-            <Button x:Name="boton_crear_empresa" Text="Crear empresa" Clicked="boton_crear_empresa_clicked" Grid.Row="2" Grid.Column="0"/>
+            <Button x:Name="boton_crear_empresa"
+                    Text="Crear empresa"
+                    TextColor="White"
+                    BackgroundColor="DeepSkyBlue"
+                    Clicked="boton_crear_empresa_clicked"
+                    Grid.Row="2" Grid.Column="0"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
