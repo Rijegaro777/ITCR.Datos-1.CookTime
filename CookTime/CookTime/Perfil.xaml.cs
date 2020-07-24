@@ -28,7 +28,7 @@ namespace CookTime
         /// </summary>
         /// <param name="dueno_perfil">El usuario al que le pertenece el perfil.</param>
         /// <param name="es_ajeno">Indica si el perfil le pertenece al usuario que está utilizando la app.</param>
-        public Perfil(Usuario dueno_perfil, bool es_ajeno)
+        public  Perfil(Usuario dueno_perfil, bool es_ajeno)
         {
             InitializeComponent();
 
@@ -111,6 +111,7 @@ namespace CookTime
             grid_perfil.Children.Add(boton_ordenar);
 
             buscar_recetas(dueno_perfil);
+            ordenar_recetas("-1");
         }
 
         public async Task ordenar_recetas(string metodo)
@@ -123,7 +124,7 @@ namespace CookTime
 
             listRecipes = new List<Recipes>();
 
-            for (int i = 0; i < recetas.Count; i++)
+            for (int i = 0; i < lista_ordenada.Count; i++)
             {
                 listRecipes.Add(new Recipes
                 {
