@@ -13,7 +13,7 @@ namespace CookTime
         /// </summary>
         public PaginaPrincipal()
         {
-            NavigationPage newsfeed = new NavigationPage(new Newsfeed());
+            NavigationPage newsfeed = new NavigationPage(new Newsfeed(usuario));
             newsfeed.Title = "Newsfeed";
 
             NavigationPage notificaciones = new NavigationPage(new Views.Notification.SocialNotificationPage());

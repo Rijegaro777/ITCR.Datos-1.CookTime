@@ -5,9 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CookTime.BoardReceta">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Compartir" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
