@@ -103,8 +103,11 @@ namespace CookTime
         /// <param name="e"></param>
         private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
-            await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(recetas[pos])));
+            if (lista_recetas.SelectedItem != null)
+            {
+                int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
+                await Navigation.PushModalAsync(new NavigationPage(new BoardReceta(recetas[pos])));
+            }
         }
 
         /// <summary>
@@ -114,10 +117,13 @@ namespace CookTime
         /// <param name="e"></param>
         private async void compartir(object sender, EventArgs e)
         {
-            int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
-            usuario_actual.get_recetas().Add(recetas[pos].get_id());
+            if (lista_recetas.SelectedItem != null)
+            {
+                int pos = lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString());
+                usuario_actual.get_recetas().Add(recetas[pos].get_id());
 
-            await DisplayAlert("Exitoso", "Receta compartida", "Ok");
+                await DisplayAlert("Exitoso", "Receta compartida", "Ok");
+            }
         }
 
         /// <summary>
@@ -128,15 +134,18 @@ namespace CookTime
         private async void user(object sender, EventArgs e)
         {
             int ind = 0;
-            for (int i = 0; i < lista_usuarios.Count; i++)
+            if (lista_recetas.SelectedItem != null)
             {
-                for (int j = 0; j < lista_usuarios[i].get_recetas().Count; j++)
+                for (int i = 0; i < lista_usuarios.Count; i++)
                 {
-                    if (ind == lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString()))
+                    for (int j = 0; j < lista_usuarios[i].get_recetas().Count; j++)
                     {
-                        await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[i], false)));
+                        if (ind == lista_nombres.IndexOf(lista_recetas.SelectedItem.ToString()))
+                        {
+                            await Navigation.PushModalAsync(new NavigationPage(new Perfil(lista_usuarios[i], false)));
+                        }
+                        ind++;
                     }
-                    ind++;
                 }
             }
         }
